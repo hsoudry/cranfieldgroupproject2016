@@ -6,6 +6,10 @@
 
 QT       += core gui
 
+QT += svg
+CONFIG += c++11
+
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = cranfieldgroupproject2016
@@ -13,8 +17,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    graphpart.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    graphpart.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES += \
+    graph_mod.py
