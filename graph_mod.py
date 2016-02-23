@@ -91,10 +91,10 @@ def draw_from_raw_file(f_path, d_path = None, g_path = None, progress = True):
 	'''
 	if (d_path ==None):
 		print("drawing graph on screen using graphviz...")
-		graphviz_draw(g, vsize = 0.1, penwidth= 0.1)
+		graphviz_draw(g, vsize = 0.01, penwidth= 0.1)
 	else:
 		print("drawing graph to file using graphviz...")
-		graphviz_draw(g, vsize = 0.1, penwidth= 0.1, output = d_path)
+		graphviz_draw(g, vsize = 0.01, penwidth= 0.1, output = d_path)
 	
 		
 	end = time.time()
@@ -164,6 +164,36 @@ def draw_colored_from_file(g_path, p_path = None, n_part = None, d_path = None):
 	print("fertig")
 	
 
+def raw_to_svg(f_path, d_path = None, progress = True):
+	start = time.time()
+	g = get_graph_from_file(f_path, progress)
+	print("graph loaded")	
+	
+	N = g.num_vertices()
+
+	if(N < 20):
+		v_size = 0.1
+	elif(N > 200000):
+		v_size = 0.01
+	else:
+		x = -0.09/199980.
+		b = 0.100009001
+		v_size = N*x+b
+	
+	pen_size = 10*v_size
+		
+	
+	if (d_path ==None):
+		print("drawing graph on screen using graphviz...")
+		graphviz_draw(g, vsize = v_size, penwidth= pen_size)
+	else:
+		print("drawing graph to file using graphviz...")
+		graphviz_draw(g, vsize = v_size, penwidth= pen_size, output = d_path)
+	
+		
+	end = time.time()
+	print("time elapsed (drawing graph): " + str(end - start))
+	print("fertig")
 
 
 

@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setGeometry(QRect(0, 0, 900, 600));
 
-    graphPart.setInputFileName("/home/michal/Documents/GroupProject/graphs/4elt.graph");
+    graphPart.setInputFileName("/home/maciek/graphs/4elt.graph");
     graphPart.SvgPrepare();
     graphPart.setNumberOfPart(8);
     graphPart.Partition();

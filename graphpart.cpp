@@ -88,7 +88,7 @@ void GraphPart::Partition()
 void GraphPart::SvgPrepare()
 {
     //DRAWING
-    string GraphModCommand="ipython3 -c 'import graph_mod; graph_mod.draw_from_raw_file(\"";
+    string GraphModCommand="ipython3 -c 'import graph_mod; graph_mod.raw_to_svg(\"";
     GraphModCommand=GraphModCommand+path_input+"\",\"" + path_uncolored + "\",progress=False)'";
     system(GraphModCommand.c_str());
 
