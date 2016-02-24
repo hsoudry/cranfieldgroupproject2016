@@ -41,10 +41,11 @@ public:
     void setInputFileName(string filename);
     void GraphColoring();
     bool isDrawable();
-
+    bool GraphIsLoaded();
     void Partition();
     void checkIfDrawable();
     void SvgPrepare();
+
 
     string getPathUncolored();
     string getPathColored();
@@ -62,6 +63,7 @@ private:
     InputType inputType;
 
     bool drawable;
+    bool graphloaded;
 
     rgb hsv2rgb(hsv in);
     int NoOfPartitions;

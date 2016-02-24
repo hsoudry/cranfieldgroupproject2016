@@ -7,7 +7,8 @@
 #include <QDebug>
 #include "graphvizpopup.h"
 #include "graphpart.h"
-
+#include <QFileDialog>
+#include <QMessageBox>
 namespace Ui {
 class MainWindow;
 }

@@ -6,13 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->RadioGraph->setChecked(true);
+    ui->ButtonLoad->setEnabled(false);
+    ui->ButtonVisualize->setEnabled(false);
 
-/*
-    graphPart.setInputFileName("../../graphs/4elt.graph");
-    graphPart.SvgPrepare();
-    graphPart.setNumberOfPart(8);
-    graphPart.Partition();
-    graphPart.GraphColoring();
+
+    /*
 
     graphPart.extractName();
 */
@@ -33,6 +32,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 void MainWindow::on_ButtonVisualize_released()
 {
+    if(graphPart.GraphIsLoaded()){
     if(item) delete item;
     if (scene) delete scene;
     if (view) delete view;
@@ -44,23 +44,49 @@ void MainWindow::on_ButtonVisualize_released()
     view->setScene(scene);
     view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
     view->show();
-
     // enables drag&drop
-    item->setFlag(QGraphicsItem::ItemIsMovable);
+    item->setFlag(QGraphicsItem::ItemIsMovable);}
+    else
+    {
+        QMessageBox msgbox;
+        msgbox.setText("Graph is not loaded!");
+        msgbox.show();
+    }
 }
 
 void MainWindow::on_ButtonBrowse_released()
 {
+    QString file1Name = QFileDialog::getOpenFileName(this,
+                                                     tr("Open graph file"), "/home", tr("Graph (*.graph *.mesh)"));
+    ui->BoxInputPath->setText(file1Name);
+    if (!file1Name.isEmpty()) ui->ButtonLoad->setEnabled(true);
+
 
 }
 
 void MainWindow::on_ButtonLoad_released()
 {
 
+
+    if(ui->RadioGraph->isChecked()){
+        graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
+        graphPart.SvgPrepare();
+        ui->ButtonVisualize->setEnabled(true);
+
+
+    }
+    else
+    {
+
+    }
+
 }
 
 void MainWindow::on_ButtonsOkCancel_accepted()
 {
+    graphPart.Partition();
+    graphPart.GraphColoring();
+
     if(item) delete item;
     if (scene) delete scene;
     if (view) delete view;

@@ -13,6 +13,8 @@ GraphPart::GraphPart()
 {
     inputType = graph;
     drawable = true;
+    graphloaded = false;
+    NoOfPartitions=2;
     srand(time(NULL));
     //checkIfDrawable();
     //GraphColoring();
@@ -22,6 +24,11 @@ GraphPart::GraphPart()
 bool GraphPart::isDrawable()
 {
     return drawable;
+}
+
+bool GraphPart::GraphIsLoaded()
+{
+    return graphloaded;
 }
 
 void GraphPart::checkIfDrawable()
@@ -91,6 +98,7 @@ void GraphPart::SvgPrepare()
     string GraphModCommand="ipython3 -c 'import graph_mod; graph_mod.raw_to_svg(\"";
     GraphModCommand=GraphModCommand+path_input+"\",\"" + path_uncolored + "\",progress=False)'";
     system(GraphModCommand.c_str());
+    graphloaded= true;
 
 }
 
