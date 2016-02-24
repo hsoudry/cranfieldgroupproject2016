@@ -58,24 +58,43 @@ public:
     QPushButton *ButtonVisualize;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_3;
-    QVBoxLayout *verticalLayout_4;
+    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_7;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label;
     QSpacerItem *horizontalSpacer;
     QSpinBox *BoxNumberOfPartitions;
     QSpacerItem *horizontalSpacer_2;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *pushButton_3;
-    QSpacerItem *horizontalSpacer_5;
-    QVBoxLayout *verticalLayout;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
+    QHBoxLayout *horizontalLayout_12;
+    QVBoxLayout *verticalLayout_6;
     QHBoxLayout *horizontalLayout_5;
+    QLabel *label_5;
+    QSpacerItem *horizontalSpacer_9;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_4;
+    QSpacerItem *horizontalSpacer_8;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_3;
+    QSpacerItem *horizontalSpacer_7;
+    QHBoxLayout *horizontalLayout_10;
     QLabel *label_2;
     QSpacerItem *horizontalSpacer_6;
-    QHBoxLayout *horizontalLayout_8;
-    QLineEdit *BoxAdditionalOptions;
-    QSpacerItem *horizontalSpacer_9;
-    QVBoxLayout *verticalLayout_5;
-    QSpacerItem *verticalSpacer;
+    QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout;
+    QRadioButton *radioButton_9;
+    QRadioButton *radioButton_7;
+    QRadioButton *radioButton_5;
+    QRadioButton *radioButton_3;
+    QVBoxLayout *verticalLayout_4;
+    QRadioButton *radioButton_10;
+    QRadioButton *radioButton_8;
+    QRadioButton *radioButton_6;
+    QRadioButton *radioButton_4;
+    QHBoxLayout *horizontalLayout_11;
+    QSpacerItem *horizontalSpacer_5;
     QDialogButtonBox *ButtonsOkCancel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -85,7 +104,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(417, 382);
+        MainWindow->resize(598, 440);
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -101,6 +120,7 @@ public:
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setAutoFillBackground(false);
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -178,109 +198,227 @@ public:
 
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setFlat(false);
         gridLayout_3 = new QGridLayout(groupBox_3);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         label = new QLabel(groupBox_3);
         label->setObjectName(QStringLiteral("label"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy);
 
         horizontalLayout_4->addWidget(label);
 
-        horizontalSpacer = new QSpacerItem(60, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(220, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer);
 
         BoxNumberOfPartitions = new QSpinBox(groupBox_3);
         BoxNumberOfPartitions->setObjectName(QStringLiteral("BoxNumberOfPartitions"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(BoxNumberOfPartitions->sizePolicy().hasHeightForWidth());
+        BoxNumberOfPartitions->setSizePolicy(sizePolicy1);
         BoxNumberOfPartitions->setMinimum(2);
         BoxNumberOfPartitions->setMaximum(999);
 
         horizontalLayout_4->addWidget(BoxNumberOfPartitions);
 
-        horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_2);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_4);
+        verticalLayout_7->addLayout(horizontalLayout_4);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        pushButton_3 = new QPushButton(groupBox_3);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        radioButton = new QRadioButton(groupBox_3);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setChecked(true);
 
-        horizontalLayout_7->addWidget(pushButton_3);
+        horizontalLayout_7->addWidget(radioButton);
 
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        radioButton_2 = new QRadioButton(groupBox_3);
+        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
 
-        horizontalLayout_7->addItem(horizontalSpacer_5);
+        horizontalLayout_7->addWidget(radioButton_2);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_7);
+        verticalLayout_7->addLayout(horizontalLayout_7);
 
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+
+        verticalLayout_5->addLayout(verticalLayout_7);
+
+        horizontalLayout_12 = new QHBoxLayout();
+        horizontalLayout_12->setSpacing(6);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_2 = new QLabel(groupBox_3);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_5 = new QLabel(groupBox_3);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        sizePolicy.setHeightForWidth(label_5->sizePolicy().hasHeightForWidth());
+        label_5->setSizePolicy(sizePolicy);
 
-        horizontalLayout_5->addWidget(label_2);
+        horizontalLayout_5->addWidget(label_5);
 
-        horizontalSpacer_6 = new QSpacerItem(13, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_5->addItem(horizontalSpacer_6);
+        horizontalLayout_5->addItem(horizontalSpacer_9);
 
 
-        verticalLayout->addLayout(horizontalLayout_5);
+        verticalLayout_6->addLayout(horizontalLayout_5);
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        BoxAdditionalOptions = new QLineEdit(groupBox_3);
-        BoxAdditionalOptions->setObjectName(QStringLiteral("BoxAdditionalOptions"));
+        label_4 = new QLabel(groupBox_3);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setEnabled(true);
+        sizePolicy.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy);
 
-        horizontalLayout_8->addWidget(BoxAdditionalOptions);
+        horizontalLayout_8->addWidget(label_4);
 
-        horizontalSpacer_9 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_8->addItem(horizontalSpacer_9);
-
-
-        verticalLayout->addLayout(horizontalLayout_8);
-
-
-        verticalLayout_4->addLayout(verticalLayout);
+        horizontalLayout_8->addItem(horizontalSpacer_8);
 
 
-        gridLayout_3->addLayout(verticalLayout_4, 0, 0, 1, 1);
+        verticalLayout_6->addLayout(horizontalLayout_8);
 
-        verticalLayout_5 = new QVBoxLayout();
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        label_3 = new QLabel(groupBox_3);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        verticalLayout_5->addItem(verticalSpacer);
+        horizontalLayout_9->addWidget(label_3);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_7);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_9);
+
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        label_2 = new QLabel(groupBox_3);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout_10->addWidget(label_2);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_10->addItem(horizontalSpacer_6);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_10);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_6);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        radioButton_9 = new QRadioButton(groupBox_3);
+        radioButton_9->setObjectName(QStringLiteral("radioButton_9"));
+
+        verticalLayout->addWidget(radioButton_9);
+
+        radioButton_7 = new QRadioButton(groupBox_3);
+        radioButton_7->setObjectName(QStringLiteral("radioButton_7"));
+
+        verticalLayout->addWidget(radioButton_7);
+
+        radioButton_5 = new QRadioButton(groupBox_3);
+        radioButton_5->setObjectName(QStringLiteral("radioButton_5"));
+
+        verticalLayout->addWidget(radioButton_5);
+
+        radioButton_3 = new QRadioButton(groupBox_3);
+        radioButton_3->setObjectName(QStringLiteral("radioButton_3"));
+
+        verticalLayout->addWidget(radioButton_3);
+
+
+        horizontalLayout_2->addLayout(verticalLayout);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        radioButton_10 = new QRadioButton(groupBox_3);
+        radioButton_10->setObjectName(QStringLiteral("radioButton_10"));
+
+        verticalLayout_4->addWidget(radioButton_10);
+
+        radioButton_8 = new QRadioButton(groupBox_3);
+        radioButton_8->setObjectName(QStringLiteral("radioButton_8"));
+
+        verticalLayout_4->addWidget(radioButton_8);
+
+        radioButton_6 = new QRadioButton(groupBox_3);
+        radioButton_6->setObjectName(QStringLiteral("radioButton_6"));
+
+        verticalLayout_4->addWidget(radioButton_6);
+
+        radioButton_4 = new QRadioButton(groupBox_3);
+        radioButton_4->setObjectName(QStringLiteral("radioButton_4"));
+
+        verticalLayout_4->addWidget(radioButton_4);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_4);
+
+
+        horizontalLayout_12->addLayout(horizontalLayout_2);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_12);
+
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_11->addItem(horizontalSpacer_5);
 
         ButtonsOkCancel = new QDialogButtonBox(groupBox_3);
         ButtonsOkCancel->setObjectName(QStringLiteral("ButtonsOkCancel"));
-        ButtonsOkCancel->setOrientation(Qt::Vertical);
+        ButtonsOkCancel->setOrientation(Qt::Horizontal);
         ButtonsOkCancel->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 
-        verticalLayout_5->addWidget(ButtonsOkCancel);
+        horizontalLayout_11->addWidget(ButtonsOkCancel);
 
 
-        gridLayout_3->addLayout(verticalLayout_5, 0, 1, 1, 1);
+        verticalLayout_5->addLayout(horizontalLayout_11);
+
+
+        gridLayout_3->addLayout(verticalLayout_5, 0, 0, 1, 1);
 
 
         verticalLayout_3->addWidget(groupBox_3);
@@ -291,7 +429,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 417, 25));
+        menuBar->setGeometry(QRect(0, 0, 598, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -317,8 +455,20 @@ public:
         ButtonVisualize->setText(QApplication::translate("MainWindow", "Visualize", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Step 3", 0));
         label->setText(QApplication::translate("MainWindow", "Number of partitions", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "More", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Additional options", 0));
+        radioButton->setText(QApplication::translate("MainWindow", "Basic", 0));
+        radioButton_2->setText(QApplication::translate("MainWindow", "Advanced", 0));
+        label_5->setText(QApplication::translate("MainWindow", "Initial partitionning :", 0));
+        label_4->setText(QApplication::translate("MainWindow", "Matching :", 0));
+        label_3->setText(QApplication::translate("MainWindow", "Partitionning :", 0));
+        label_2->setText(QApplication::translate("MainWindow", "Minimize :", 0));
+        radioButton_9->setText(QApplication::translate("MainWindow", "Greedy", 0));
+        radioButton_7->setText(QApplication::translate("MainWindow", "Random", 0));
+        radioButton_5->setText(QApplication::translate("MainWindow", "Recursive bisectionning", 0));
+        radioButton_3->setText(QApplication::translate("MainWindow", "Edge-cut", 0));
+        radioButton_10->setText(QApplication::translate("MainWindow", "Sorted heavy-edge", 0));
+        radioButton_8->setText(QApplication::translate("MainWindow", "Sorted heavy-edge", 0));
+        radioButton_6->setText(QApplication::translate("MainWindow", "k-way partitionning", 0));
+        radioButton_4->setText(QApplication::translate("MainWindow", "Communication volume", 0));
     } // retranslateUi
 
 };
