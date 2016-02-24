@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->RadioGraph->setChecked(true);
     ui->ButtonLoad->setEnabled(false);
     ui->ButtonVisualize->setEnabled(false);
-
+    ui->advancedoptions->setVisible(false);
 
     /*
 
@@ -110,4 +110,11 @@ void MainWindow::on_ButtonsOkCancel_rejected()
 void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
 {
     graphPart.setNumberOfPart(arg1);
+}
+
+
+void MainWindow::on_advancedButton_released()
+{
+    ui->advancedoptions->setVisible(true);
+
 }
