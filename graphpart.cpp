@@ -62,6 +62,7 @@ void GraphPart::mesh2graph()
 
     MetisCommand += path_input;
     MetisCommand += " ";
+    path_input+=".graph";
     MetisCommand += path_input;
     system(MetisCommand.c_str());
 }
@@ -72,8 +73,6 @@ void GraphPart::extractName()
         input_filename = path_input.substr(path_input.find_last_of("/")+1,path_input.length());
     else
         input_filename = path_input;
-
-    cout << input_filename;
 }
 
 void GraphPart::Partition()
@@ -81,10 +80,9 @@ void GraphPart::Partition()
     if(inputType == mesh)
         mesh2graph();
 
-
     //PARTITIONING
     string MetisCommand="gpmetis ";
-
+    MetisCommand+=metisParams;
     MetisCommand+=path_input;
     MetisCommand+=" ";
     MetisCommand+= to_string(NoOfPartitions);
@@ -100,6 +98,11 @@ void GraphPart::SvgPrepare()
     system(GraphModCommand.c_str());
     graphloaded= true;
 
+}
+
+void GraphPart::addMetisParameters(string params)
+{
+    metisParams=params;
 }
 
 string GraphPart::getPathUncolored()

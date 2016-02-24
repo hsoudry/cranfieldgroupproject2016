@@ -45,8 +45,7 @@ public:
     void Partition();
     void checkIfDrawable();
     void SvgPrepare();
-
-
+    void addMetisParameters(string params);
     string getPathUncolored();
     string getPathColored();
 
@@ -59,7 +58,7 @@ private:
     const string path_uncolored = "graph_uncolored.svg";
     const string path_colored = "graph_colored.svg";
     const string path_metisOut = "out.txt";
-
+    string metisParams="";
     InputType inputType;
 
     bool drawable;

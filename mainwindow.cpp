@@ -10,12 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ButtonLoad->setEnabled(false);
     ui->ButtonVisualize->setEnabled(false);
 
-
-    /*
-
-    graphPart.extractName();
-*/
-
 }
 
 MainWindow::~MainWindow()
@@ -33,19 +27,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::on_ButtonVisualize_released()
 {
     if(graphPart.GraphIsLoaded()){
-    if(item) delete item;
-    if (scene) delete scene;
-    if (view) delete view;
-    scene = new QGraphicsScene();
-    item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathUncolored()));
-    scene->addItem(item);
+        if(item) delete item;
+        if (scene) delete scene;
+        if (view) delete view;
+        scene = new QGraphicsScene();
+        item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathUncolored()));
+        scene->addItem(item);
 
-    view = new GraphVizPopUp();
-    view->setScene(scene);
-    view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
-    view->show();
-    // enables drag&drop
-    item->setFlag(QGraphicsItem::ItemIsMovable);}
+        view = new GraphVizPopUp();
+        view->setScene(scene);
+        view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+        view->show();
+        // enables drag&drop
+        item->setFlag(QGraphicsItem::ItemIsMovable);}
     else
     {
         QMessageBox msgbox;
@@ -60,26 +54,14 @@ void MainWindow::on_ButtonBrowse_released()
                                                      tr("Open graph file"), "/home", tr("Graph (*.graph *.mesh)"));
     ui->BoxInputPath->setText(file1Name);
     if (!file1Name.isEmpty()) ui->ButtonLoad->setEnabled(true);
-
-
 }
 
 void MainWindow::on_ButtonLoad_released()
 {
-
-
-    if(ui->RadioGraph->isChecked()){
-        graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
-        graphPart.SvgPrepare();
-        ui->ButtonVisualize->setEnabled(true);
-
-
-    }
-    else
-    {
-
-    }
-
+    graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
+    if(!ui->RadioGraph->isChecked()) graphPart.mesh2graph();
+    graphPart.SvgPrepare();
+    ui->ButtonVisualize->setEnabled(true);
 }
 
 void MainWindow::on_ButtonsOkCancel_accepted()
