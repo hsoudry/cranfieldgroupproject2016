@@ -31,10 +31,10 @@
            <item row="0" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="BoxInputPath"/>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="ButtonBrowse">
                <property name="text">
                 <string>Browse</string>
                </property>
@@ -45,7 +45,7 @@
            <item row="1" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QRadioButton" name="radioButton">
+              <widget class="QRadioButton" name="RadioGraph">
                <property name="text">
                 <string>Graph</string>
                </property>
@@ -65,7 +65,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QRadioButton" name="radioButton_2">
+              <widget class="QRadioButton" name="RadioMesh">
                <property name="text">
                 <string>Mesh</string>
                </property>
@@ -85,7 +85,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="ButtonLoad">
                <property name="text">
                 <string>Load</string>
                </property>
@@ -105,7 +105,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="0">
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="ButtonVisualize">
                <property name="text">
                 <string>Visualize</string>
                </property>
@@ -152,21 +152,12 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
+              <widget class="QSpinBox" name="BoxNumberOfPartitions">
+               <property name="minimum">
+                <number>2</number>
                </property>
-               <property name="maximumSize">
-                <size>
-                 <width>30</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>0</string>
+               <property name="maximum">
+                <number>999</number>
                </property>
               </widget>
              </item>
@@ -213,50 +204,6 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QRadioButton" name="radioButton_3">
-               <property name="text">
-                <string>Metis</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_8">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="radioButton_4">
-               <property name="text">
-                <string>Zoltan</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_7">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -285,7 +232,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_8">
                <item>
-                <widget class="QLineEdit" name="lineEdit_3"/>
+                <widget class="QLineEdit" name="BoxAdditionalOptions"/>
                </item>
                <item>
                 <spacer name="horizontalSpacer_9">
@@ -325,7 +272,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QDialogButtonBox" name="buttonBox">
+            <widget class="QDialogButtonBox" name="ButtonsOkCancel">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -342,18 +289,7 @@
      </layout>
     </item>
    </layout>
-   <zorder>lineEdit</zorder>
-   <zorder>radioButton</zorder>
-   <zorder>radioButton_2</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>groupBox</zorder>
    <zorder></zorder>
-   <zorder>groupBox_2</zorder>
-   <zorder>groupBox_3</zorder>
-   <zorder>label</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>groupBox_4</zorder>
-   <zorder>verticalSpacer</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

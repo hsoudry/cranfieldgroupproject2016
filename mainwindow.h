@@ -4,9 +4,8 @@
 #include <QMainWindow>
 #include <QGraphicsSvgItem>
 #include <QGraphicsView>
-#include <QWheelEvent>
 #include <QDebug>
-
+#include "graphvizpopup.h"
 #include "graphpart.h"
 
 namespace Ui {
@@ -24,16 +23,21 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QGraphicsView *view;
-    QGraphicsSvgItem *item;
-    QGraphicsScene *scene;
+    GraphVizPopUp *view=NULL;
+    QGraphicsSvgItem *item=NULL;
+    QGraphicsScene *scene=NULL;
 
     GraphPart graphPart;
+    void closeEvent (QCloseEvent *e);
 
-    void wheelEvent(QWheelEvent *event);
-    float scale=1.0;
 
-public slots:
+private slots:
+    void on_ButtonVisualize_released();
+    void on_ButtonBrowse_released();
+    void on_ButtonLoad_released();
+    void on_ButtonsOkCancel_accepted();
+    void on_ButtonsOkCancel_rejected();
+    void on_BoxNumberOfPartitions_valueChanged(int arg1);
 };
 
 #endif // MAINWINDOW_H

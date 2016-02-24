@@ -18,10 +18,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    graphpart.cpp
+    graphpart.cpp \
+    graphvizpopup.cpp
 
 HEADERS  += mainwindow.h \
-    graphpart.h
+    graphpart.h \
+    graphvizpopup.h
 
 FORMS    += mainwindow.ui
 

@@ -7,37 +7,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setGeometry(QRect(0, 0, 900, 600));
-
-    graphPart.setInputFileName("/home/maciek/graphs/4elt.graph");
+/*
+    graphPart.setInputFileName("../../graphs/4elt.graph");
     graphPart.SvgPrepare();
     graphPart.setNumberOfPart(8);
     graphPart.Partition();
     graphPart.GraphColoring();
 
     graphPart.extractName();
-
-    scene = new QGraphicsScene();
-    item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathColored()));
-    scene->addItem(item);
-
-    view = new QGraphicsView(this);
-    view->setScene(scene);
-    view->setGeometry(QRect(0, 0, 600, 600));
-
-    // enables drag&drop
-    item->setFlag(QGraphicsItem::ItemIsMovable);
-
-
-
-    //view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-
-
-    //view->setFocusPolicy(Qt::NoFocus);
-    //view->setMouseTracking(1);
-
+*/
 
 }
 
@@ -46,44 +24,64 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*
-void MainWindow::wheelEvent(QWheelEvent *event)
+void MainWindow::closeEvent(QCloseEvent *e)
 {
-    int delta = event->delta();
-
-    view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-
-    if (event->orientation() == Qt::Vertical) {
-        if (delta < 0) {
-            scale+=0.1;
-
-        } else if (delta > 0) {
-             scale-=0.1;
-        }
-         item->setScale(scale);
-    }
-
-    qDebug() << "scrolling";
-
-    event->accept();
+    if(item) delete item;
+    if (scene) delete scene;
+    if (view) delete view;
 }
-*/
 
-void MainWindow::wheelEvent(QWheelEvent *event){
+void MainWindow::on_ButtonVisualize_released()
+{
+    if(item) delete item;
+    if (scene) delete scene;
+    if (view) delete view;
+    scene = new QGraphicsScene();
+    item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathUncolored()));
+    scene->addItem(item);
 
-        view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-        // Scale the view / do the zoom
-        double scaleFactor = 1.15;
-        if(event->delta() > 0) {
+    view = new GraphVizPopUp();
+    view->setScene(scene);
+    view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+    view->show();
 
-            // Zoom in
-            view->scale(scaleFactor, scaleFactor);
+    // enables drag&drop
+    item->setFlag(QGraphicsItem::ItemIsMovable);
+}
 
-        } else {
-            // Zooming out
-             view->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
-        }
+void MainWindow::on_ButtonBrowse_released()
+{
 
+}
 
-        //ui->graphicsView->setTransform(QTransform(h11, h12, h21, h22, 0, 0));
+void MainWindow::on_ButtonLoad_released()
+{
+
+}
+
+void MainWindow::on_ButtonsOkCancel_accepted()
+{
+    if(item) delete item;
+    if (scene) delete scene;
+    if (view) delete view;
+    scene = new QGraphicsScene();
+    item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathColored()));
+    scene->addItem(item);
+
+    view = new GraphVizPopUp();
+    view->setScene(scene);
+    view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+    view->show();
+    // enables drag&drop
+    item->setFlag(QGraphicsItem::ItemIsMovable);
+}
+
+void MainWindow::on_ButtonsOkCancel_rejected()
+{
+    this->close();
+}
+
+void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
+{
+    graphPart.setNumberOfPart(arg1);
 }
