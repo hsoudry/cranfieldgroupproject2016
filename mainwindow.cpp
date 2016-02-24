@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ButtonLoad->setEnabled(false);
     ui->ButtonVisualize->setEnabled(false);
 
+
+    /*
+
+    graphPart.extractName();
+*/
+
 }
 
 MainWindow::~MainWindow()
@@ -54,10 +60,13 @@ void MainWindow::on_ButtonBrowse_released()
                                                      tr("Open graph file"), "/home", tr("Graph (*.graph *.mesh)"));
     ui->BoxInputPath->setText(file1Name);
     if (!file1Name.isEmpty()) ui->ButtonLoad->setEnabled(true);
+
+
 }
 
 void MainWindow::on_ButtonLoad_released()
 {
+
     graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
     if(!ui->RadioGraph->isChecked()) graphPart.mesh2graph();
     graphPart.SvgPrepare();
