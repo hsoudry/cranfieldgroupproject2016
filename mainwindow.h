@@ -40,6 +40,7 @@ private slots:
     void on_ButtonsOkCancel_rejected();
     void on_BoxNumberOfPartitions_valueChanged(int arg1);
     void on_advancedButton_released();
+    void on_basicButton_released();
 };
 
 #endif // MAINWINDOW_H

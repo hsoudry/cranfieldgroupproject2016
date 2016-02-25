@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ButtonLoad->setEnabled(false);
     ui->ButtonVisualize->setEnabled(false);
     ui->advancedoptions->setVisible(false);
+    this->setFixedSize(592,300); //minimum size
 
     /*
 
@@ -115,6 +116,13 @@ void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
 
 void MainWindow::on_advancedButton_released()
 {
+    this->setFixedSize(592,464);
     ui->advancedoptions->setVisible(true);
 
+}
+
+void MainWindow::on_basicButton_released()
+{
+    ui->advancedoptions->setVisible(false);
+    this->setFixedSize(592,300); // minimum size
 }
