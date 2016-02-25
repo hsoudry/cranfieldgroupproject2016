@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->advancedoptions->setVisible(false);
     this->setFixedSize(592,300); //minimum size
     msgbox.setWindowTitle(" ");
+    metisOuts.push_back(new MetisOutput("out.txt"));
+    cout<<metisOuts.at(0)->GetMaxImbalance();
+
 }
 
 MainWindow::~MainWindow()

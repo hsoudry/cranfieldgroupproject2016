@@ -10,9 +10,14 @@
 #include "graphpart.h"
 #include <QFileDialog>
 #include <QMessageBox>
+<<<<<<< HEAD
 #include <vector>
 #include <string>
 
+=======
+#include "metisoutput.h"
+#include <vector>
+>>>>>>> cfe92168b89739b8a575482958e19e17c987c950
 namespace Ui {
 class MainWindow;
 }
@@ -31,6 +36,7 @@ private:
     GraphVizPopUp *view=NULL;
     QGraphicsSvgItem *item=NULL;
     QGraphicsScene *scene=NULL;
+    vector<MetisOutput *> metisOuts;
 
     QTableWidget *tableCurrent=NULL;
     QTableWidget *tableComparison=NULL;

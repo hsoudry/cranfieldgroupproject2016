@@ -19,11 +19,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     graphpart.cpp \
-    graphvizpopup.cpp
+    graphvizpopup.cpp \
+    metisoutput.cpp
 
 HEADERS  += mainwindow.h \
     graphpart.h \
-    graphvizpopup.h
+    graphvizpopup.h \
+    metisoutput.h
 
 FORMS    += mainwindow.ui
 
