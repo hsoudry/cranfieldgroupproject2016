@@ -6,7 +6,8 @@
 class MetisOutput
 {
 public:
-    MetisOutput(std::string FileName);
+    MetisOutput(std::string FileName, std::string name);
+    std::string GetName() const;
     int GetNoOfVertices() const;
     int GetNoOfEdges() const;
     int GetNoOfParts() const;
@@ -18,6 +19,7 @@ public:
     std::string GetCtype() const;
     std::string GetIptype() const;
 private:
+    std::string Name;
     int NoOfVertices;
     int NoOfEdges;
     int NoOfParts;

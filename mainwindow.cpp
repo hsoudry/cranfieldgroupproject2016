@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->advancedoptions->setVisible(false);
     this->setFixedSize(592,300); //minimum size
     msgbox.setWindowTitle(" ");
-    meti
-
 }
 
 MainWindow::~MainWindow()
@@ -170,7 +168,8 @@ void MainWindow::on_pushButtonPartition_clicked()
                 if (ui->communication->isChecked()) MetisOptions+="-objtype=vol ";
                 graphPart.addMetisParameters(MetisOptions);
             }
-            metisOuts.push_back(new MetisOutput(graphPart.Partition()));
+            metisOuts.push_back(new MetisOutput(graphPart.Partition(),graphPart.extractName()));
+
             graphPart.GraphColoring();
             if(graphPart.isDrawable()){
                 if(item) delete item;
@@ -202,80 +201,68 @@ void MainWindow::on_pushButtonPartition_clicked()
 
 void MainWindow::on_pushButtonTextOutput_clicked()
 {
-    //OutTextDialog outText;
-    //outText.exec();
-    //outText.addData();
-
-
-    cout<<metisOuts.at(0)->GetMaxImbalance();
-
-    tableCurrent = new QTableWidget(2,2);
+    tableCurrent = new QTableWidget(paramsNames.size()+1,metisOuts.size());
     tableCurrent->show();
     tableCurrent->setGeometry(20,20,300,300);
 
+    //QStringList m_TableHeaderH;
+    //m_TableHeaderH << "Parameter" << "Value";
+    //tableCurrent->setHorizontalHeaderLabels(m_TableHeaderH);
 
-    QStringList m_TableHeader;
-    m_TableHeader << "Parameter" << "Value";
-    tableCurrent->setHorizontalHeaderLabels(m_TableHeader);
+    QStringList m_TableHeaderV;
+    for(int i = 0; i<paramsNames.size(); i++)
+    {
+        m_TableHeaderV << QString::fromStdString(paramsNames[i]);
+    }
+    m_TableHeaderV << "Name";
+    tableCurrent->setVerticalHeaderLabels(m_TableHeaderV);
 
-    tableCurrent->setRowCount(paramsNames.size());
-    tableCurrent->setColumnCount(metisOuts.size()+1);
-
+    //tableCurrent->setRowCount(paramsNames.size());
+    //tableCurrent->setColumnCount(metisOuts.size()+1);
+/*
     for(int i = 0; i<paramsNames.size(); i++)
     {
         QTableWidgetItem *tableItem = new QTableWidgetItem(QString::fromStdString(paramsNames[i]));
         tableCurrent->setItem(i, 0, tableItem);
         tableItem->setFlags(tableItem->flags() ^ Qt::ItemIsEditable);
     }
+    */
 
-    for(int j = 1; j<metisOuts.size(); j++)
+    for(int j = 0; j<metisOuts.size(); j++)
     {
+        QTableWidgetItem *tableItem_y10 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetName()));
+        tableCurrent->setItem(10, j, tableItem_y10);
 
+        QTableWidgetItem *tableItem_y0 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfVertices()));
+        tableCurrent->setItem(0, j, tableItem_y0);
+        QTableWidgetItem *tableItem_y1 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfEdges()));
+        tableCurrent->setItem(1, j, tableItem_y1);
+        QTableWidgetItem *tableItem_y2 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfParts()));
+        tableCurrent->setItem(2, j, tableItem_y2);
+        QTableWidgetItem *tableItem_y3 = new QTableWidgetItem(QString::number(metisOuts[j]->GetEdgeCut()));
+        tableCurrent->setItem(3, j, tableItem_y3);
+        QTableWidgetItem *tableItem_y4 = new QTableWidgetItem(QString::number(metisOuts[j]->GetCommunicationVol()));
+        tableCurrent->setItem(4, j, tableItem_y4);
+        QTableWidgetItem *tableItem_y5 = new QTableWidgetItem(QString::number(metisOuts[j]->GetMaxImbalance()));
+        tableCurrent->setItem(5, j, tableItem_y5);
+        QTableWidgetItem *tableItem_y6 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetPtype()));
+        tableCurrent->setItem(6, j, tableItem_y6);
+        QTableWidgetItem *tableItem_y7 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetObjtype()));
+        tableCurrent->setItem(7, j, tableItem_y7);
+        QTableWidgetItem *tableItem_y8 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetCtype()));
+        tableCurrent->setItem(8, j, tableItem_y8);
+        QTableWidgetItem *tableItem_y9 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetIptype()));
+        tableCurrent->setItem(9, j, tableItem_y9);
 
-        QTableWidgetItem *tableItem_y = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfVertices()));
-        tableCurrent->setItem(j, 0, tableItem_y);
-        tableItem_y->setText(QString::number(metisOuts[j]->GetNoOfEdges()));
-        tableCurrent->setItem(j, 1, tableItem_y);
-        tableItem_y->setText(QString::number(metisOuts[j]->GetNoOfParts()));
-        tableCurrent->setItem(j, 2, tableItem_y);
-        tableItem_y->setText(QString::number(metisOuts[j]->GetEdgeCut()));
-        tableCurrent->setItem(j, 3, tableItem_y);
-        tableItem_y->setText(QString::number(metisOuts[j]->GetCommunicationVol()));
-        tableCurrent->setItem(j, 4, tableItem_y);
-        tableItem_y->setText(QString::number(metisOuts[j]->GetMaxImbalance()));
-        tableCurrent->setItem(j, 5, tableItem_y);
-        tableItem_y->setText(QString::fromStdString(metisOuts[j]->GetPtype()));
-        tableCurrent->setItem(j, 6, tableItem_y);
-        tableItem_y->setText(QString::fromStdString(metisOuts[j]->GetObjtype()));
-        tableCurrent->setItem(j, 7, tableItem_y);
-        tableItem_y->setText(QString::fromStdString(metisOuts[j]->GetCtype()));
-        tableCurrent->setItem(j, 8, tableItem_y);
-        tableItem_y->setText(QString::fromStdString(metisOuts[j]->GetIptype()));
-        tableCurrent->setItem(j, 9, tableItem_y);
-
-        tableItem_y->setFlags(tableItem_y->flags() ^ Qt::ItemIsEditable);
-    }
-
-
-
-
-    //tableCurrent->setItem(0, 0, new QTableWidgetItem("Hello"));
-    //table->setShowGrid(true);
-
-
-}
-
-void MainWindow::on_pushButtonCompareResults_clicked()
-{
-    tableComparison = new QTableWidget(2,2);
-    tableComparison->show();
-    tableComparison->setGeometry(20,20,300,300);
-
-    tableComparison->setRowCount(paramsNames.size());
-    tableComparison->setColumnCount(2);
-
-    for(int i = 0; i<paramsNames.size(); i++)
-    {
-        tableComparison->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(paramsNames[i])));
+        tableItem_y0->setFlags(tableItem_y0->flags() ^ Qt::ItemIsEditable);
+        tableItem_y1->setFlags(tableItem_y1->flags() ^ Qt::ItemIsEditable);
+        tableItem_y2->setFlags(tableItem_y2->flags() ^ Qt::ItemIsEditable);
+        tableItem_y3->setFlags(tableItem_y3->flags() ^ Qt::ItemIsEditable);
+        tableItem_y4->setFlags(tableItem_y4->flags() ^ Qt::ItemIsEditable);
+        tableItem_y5->setFlags(tableItem_y5->flags() ^ Qt::ItemIsEditable);
+        tableItem_y6->setFlags(tableItem_y6->flags() ^ Qt::ItemIsEditable);
+        tableItem_y7->setFlags(tableItem_y7->flags() ^ Qt::ItemIsEditable);
+        tableItem_y8->setFlags(tableItem_y8->flags() ^ Qt::ItemIsEditable);
+        tableItem_y9->setFlags(tableItem_y9->flags() ^ Qt::ItemIsEditable);
     }
 }

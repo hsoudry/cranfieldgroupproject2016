@@ -69,12 +69,14 @@ void GraphPart::mesh2graph()
     system(MetisCommand.c_str());
 }
 
-void GraphPart::extractName()
+// returns file name
+string GraphPart::extractName()
 {
     if(path_input.find("/") != string::npos)
         input_filename = path_input.substr(path_input.find_last_of("/")+1,path_input.length());
     else
         input_filename = path_input;
+    return input_filename;
 }
 
 bool GraphPart::CheckInputFile()

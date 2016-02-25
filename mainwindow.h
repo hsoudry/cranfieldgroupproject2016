@@ -43,7 +43,7 @@ private:
     void closeEvent (QCloseEvent);
     QMessageBox msgbox;
 
-    std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Partitioning", "Matching", "Initial", "Minimize", "Communicationvol", "Max imbalance"};
+    std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Communicationvol",  "Max imbalance", "Partitioning", "Matching", "Initial", "Minimize"};
 
 private slots:
     void on_ButtonVisualize_released();
@@ -60,7 +60,6 @@ private slots:
     void on_pushButtonPartition_clicked();
     void on_pushButtonTextOutput_clicked();
 
-    void on_pushButtonCompareResults_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -1,11 +1,13 @@
 #include "metisoutput.h"
 using namespace std;
 
-MetisOutput::MetisOutput(string FileName)
+MetisOutput::MetisOutput(string FileName, string name)
 {
 
     ifstream myfile (FileName);
     string line,temp;
+
+    Name = name;
 
     if (myfile.is_open())
     {
@@ -61,6 +63,11 @@ MetisOutput::MetisOutput(string FileName)
         }
         myfile.close();
     }
+}
+
+string MetisOutput::GetName() const
+{
+    return Name;
 }
 
 

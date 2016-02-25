@@ -618,13 +618,6 @@
              <item>
               <widget class="QPushButton" name="pushButtonTextOutput">
                <property name="text">
-                <string>Show output</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonCompareResults">
-               <property name="text">
                 <string>Compare Results</string>
                </property>
               </widget>

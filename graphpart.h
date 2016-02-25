@@ -54,7 +54,7 @@ public:
     bool SetInputType(InputType type);
     void setNumberOfPart(int noOfPartitions);
     void mesh2graph();
-    void extractName();
+    string extractName();
     bool CheckInputFile();
 private:
     string path_input;
