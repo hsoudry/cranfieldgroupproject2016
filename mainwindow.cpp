@@ -197,3 +197,43 @@ void MainWindow::on_pushButtonPartition_clicked()
             msgbox.exec();
         }
 }
+
+void MainWindow::on_pushButtonTextOutput_clicked()
+{
+    //OutTextDialog outText;
+    //outText.exec();
+    //outText.addData();
+
+    tableCurrent = new QTableWidget(2,2);
+    tableCurrent->show();
+    tableCurrent->setGeometry(20,20,300,300);
+
+    tableCurrent->setRowCount(paramsNames.size());
+    tableCurrent->setColumnCount(2);
+
+    for(int i = 0; i<paramsNames.size(); i++)
+    {
+        tableCurrent->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(paramsNames[i])));
+    }
+
+
+    //tableCurrent->setItem(0, 0, new QTableWidgetItem("Hello"));
+    //table->setShowGrid(true);
+
+
+}
+
+void MainWindow::on_pushButtonCompareResults_clicked()
+{
+    tableComparison = new QTableWidget(2,2);
+    tableComparison->show();
+    tableComparison->setGeometry(20,20,300,300);
+
+    tableComparison->setRowCount(paramsNames.size());
+    tableComparison->setColumnCount(2);
+
+    for(int i = 0; i<paramsNames.size(); i++)
+    {
+        tableComparison->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(paramsNames[i])));
+    }
+}

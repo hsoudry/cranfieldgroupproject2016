@@ -6,9 +6,13 @@
 #include <QGraphicsView>
 #include <QDebug>
 #include "graphvizpopup.h"
+#include "outtextdialog.h"
 #include "graphpart.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include <vector>
+#include <string>
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,9 +32,14 @@ private:
     QGraphicsSvgItem *item=NULL;
     QGraphicsScene *scene=NULL;
 
+    QTableWidget *tableCurrent=NULL;
+    QTableWidget *tableComparison=NULL;
+
     GraphPart graphPart;
     void closeEvent (QCloseEvent);
     QMessageBox msgbox;
+
+    std::vector<string> paramsNames = {"edgecut", "piedrupierdu", "asd"};
 
 private slots:
     void on_ButtonVisualize_released();
@@ -45,6 +54,9 @@ private slots:
 
     void on_pushButtonExit_clicked();
     void on_pushButtonPartition_clicked();
+    void on_pushButtonTextOutput_clicked();
+
+    void on_pushButtonCompareResults_clicked();
 };
 
 #endif // MAINWINDOW_H

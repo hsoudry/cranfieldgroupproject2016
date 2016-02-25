@@ -616,6 +616,20 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
+              <widget class="QPushButton" name="pushButtonTextOutput">
+               <property name="text">
+                <string>Show output</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonCompareResults">
+               <property name="text">
+                <string>Compare Results</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer_5">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>

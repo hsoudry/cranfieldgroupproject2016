@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <QDateTime>
+#include <QDir>
 
 #include "stdio.h"
 #include "iostream"
@@ -59,7 +61,7 @@ private:
     string input_filename;
     const string path_uncolored = "graph_uncolored.svg";
     const string path_colored = "graph_colored.svg";
-    const string path_metisOut = "out.txt";
+    string path_metisOut = "out.txt";
     string metisParams="";
     InputType inputType;
 

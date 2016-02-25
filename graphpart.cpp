@@ -90,6 +90,13 @@ bool GraphPart::CheckInputFile()
 
 void GraphPart::Partition()
 {
+    if(!QDir("metisOut").exists())
+        QDir().mkdir("metisOut");
+
+    QDateTime dateTime = QDateTime::currentDateTime();
+    //path_metisOut = "metisOut/out_" + std::to_string(dateTime.toTime_t()) + ".txt";
+    path_metisOut = "metisOut/out_" + dateTime.toString(Qt::ISODate).toStdString() + ".txt";
+
     //PARTITIONING
     string MetisCommand="gpmetis ";
     MetisCommand+=metisParams;
@@ -250,3 +257,5 @@ void GraphPart::GraphColoring(){
     }
 
 }
+
+
