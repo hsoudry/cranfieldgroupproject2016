@@ -41,6 +41,8 @@ private slots:
     void on_BoxNumberOfPartitions_valueChanged(int arg1);
     void on_advancedButton_released();
     void on_basicButton_released();
+    void on_recursive_bisection_released();
+    void on_kway_released();
 };
 
 #endif // MAINWINDOW_H

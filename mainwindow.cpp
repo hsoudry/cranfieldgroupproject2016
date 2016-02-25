@@ -80,8 +80,10 @@ void MainWindow::on_ButtonLoad_released()
     graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
     if(!ui->RadioGraph->isChecked()) graphPart.mesh2graph();
     if(graphPart.isDrawable()){
+        ui->statusBar->showMessage("Graph is being loaded...");
         graphPart.SvgPrepare();
         ui->ButtonVisualize->setEnabled(true);
+        ui->statusBar->showMessage("");
     }
     else{
         QMessageBox msgbox;
@@ -94,7 +96,18 @@ void MainWindow::on_ButtonLoad_released()
 void MainWindow::on_ButtonsOkCancel_accepted()
 {
     if(graphPart.GraphIsLoaded()){
-
+        if(ui->advancedButton->isChecked()){
+            string MetisOptions="";
+            if (ui->kway->isChecked()) MetisOptions+="-ptype=kway ";
+            if (ui->recursive_bisection->isChecked()) MetisOptions+="-ptype=rb ";
+            if (ui->sorted->isChecked()) MetisOptions+="-ctype=shem ";
+            if (ui->random_matching->isChecked()) MetisOptions+="-ctype=rm ";
+            if (ui->greedy->isChecked()) MetisOptions+="-iptype=grow ";
+            if (ui->random_bisection->isChecked()) MetisOptions+="-iptype=random ";
+            if (ui->edge_cut->isChecked()) MetisOptions+="-objtype=cut ";
+            if (ui->communication->isChecked()) MetisOptions+="-objtype=vol ";
+            graphPart.addMetisParameters(MetisOptions);
+        }
         graphPart.Partition();
         graphPart.GraphColoring();
         if(graphPart.isDrawable()){
@@ -141,6 +154,9 @@ void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
 void MainWindow::on_advancedButton_released()
 {
     this->setFixedSize(592,464);
+    ui->greedy->setVisible(false);
+    ui->random_bisection->setVisible(false);
+    ui->initial->setVisible(false);
     ui->advancedoptions->setVisible(true);
 
 }
@@ -149,4 +165,25 @@ void MainWindow::on_basicButton_released()
 {
     ui->advancedoptions->setVisible(false);
     this->setFixedSize(592,300); // minimum size
+}
+
+void MainWindow::on_recursive_bisection_released()
+{
+
+    ui->greedy->setVisible(true);
+    ui->random_bisection->setVisible(true);
+    ui->initial->setVisible(true);
+    ui->edge_cut->setVisible(false);
+    ui->communication->setVisible(false);
+    ui->minimization->setVisible(false);
+}
+
+void MainWindow::on_kway_released()
+{
+    ui->greedy->setVisible(false);
+    ui->random_bisection->setVisible(false);
+    ui->initial->setVisible(false);
+    ui->edge_cut->setVisible(true);
+    ui->communication->setVisible(true);
+    ui->minimization->setVisible(true);
 }
