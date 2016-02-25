@@ -87,18 +87,18 @@ public:
     QRadioButton *random_matching;
     QSpacerItem *horizontalSpacer_11;
     QHBoxLayout *InitialPartitioningLayout;
-    QLabel *minimization;
     QLabel *initial;
     QSpacerItem *horizontalSpacer_9;
-    QRadioButton *communication;
-    QRadioButton *edge_cut;
     QRadioButton *greedy;
     QSpacerItem *horizontalSpacer_16;
     QRadioButton *random_bisection;
     QSpacerItem *horizontalSpacer_12;
     QHBoxLayout *horizontalLayout_9;
+    QLabel *minimization;
     QSpacerItem *horizontalSpacer_6;
+    QRadioButton *edge_cut;
     QSpacerItem *horizontalSpacer_17;
+    QRadioButton *communication;
     QSpacerItem *horizontalSpacer_13;
     QHBoxLayout *horizontalLayout_10;
     QSpacerItem *horizontalSpacer_5;
@@ -385,11 +385,6 @@ public:
         InitialPartitioningLayout = new QHBoxLayout();
         InitialPartitioningLayout->setSpacing(6);
         InitialPartitioningLayout->setObjectName(QStringLiteral("InitialPartitioningLayout"));
-        minimization = new QLabel(advancedoptions);
-        minimization->setObjectName(QStringLiteral("minimization"));
-
-        InitialPartitioningLayout->addWidget(minimization);
-
         initial = new QLabel(advancedoptions);
         initial->setObjectName(QStringLiteral("initial"));
         sizePolicy.setHeightForWidth(initial->sizePolicy().hasHeightForWidth());
@@ -400,21 +395,6 @@ public:
         horizontalSpacer_9 = new QSpacerItem(9, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         InitialPartitioningLayout->addItem(horizontalSpacer_9);
-
-        communication = new QRadioButton(advancedoptions);
-        buttonGroup_4 = new QButtonGroup(MainWindow);
-        buttonGroup_4->setObjectName(QStringLiteral("buttonGroup_4"));
-        buttonGroup_4->addButton(communication);
-        communication->setObjectName(QStringLiteral("communication"));
-
-        InitialPartitioningLayout->addWidget(communication);
-
-        edge_cut = new QRadioButton(advancedoptions);
-        buttonGroup_4->addButton(edge_cut);
-        edge_cut->setObjectName(QStringLiteral("edge_cut"));
-        edge_cut->setChecked(true);
-
-        InitialPartitioningLayout->addWidget(edge_cut);
 
         greedy = new QRadioButton(advancedoptions);
         buttonGroup = new QButtonGroup(MainWindow);
@@ -445,13 +425,33 @@ public:
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        minimization = new QLabel(advancedoptions);
+        minimization->setObjectName(QStringLiteral("minimization"));
+
+        horizontalLayout_9->addWidget(minimization);
+
         horizontalSpacer_6 = new QSpacerItem(78, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_6);
 
+        edge_cut = new QRadioButton(advancedoptions);
+        buttonGroup_4 = new QButtonGroup(MainWindow);
+        buttonGroup_4->setObjectName(QStringLiteral("buttonGroup_4"));
+        buttonGroup_4->addButton(edge_cut);
+        edge_cut->setObjectName(QStringLiteral("edge_cut"));
+        edge_cut->setChecked(true);
+
+        horizontalLayout_9->addWidget(edge_cut);
+
         horizontalSpacer_17 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_17);
+
+        communication = new QRadioButton(advancedoptions);
+        buttonGroup_4->addButton(communication);
+        communication->setObjectName(QStringLiteral("communication"));
+
+        horizontalLayout_9->addWidget(communication);
 
         horizontalSpacer_13 = new QSpacerItem(0, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
@@ -533,12 +533,12 @@ public:
         matching->setText(QApplication::translate("MainWindow", "Matching :", 0));
         sorted->setText(QApplication::translate("MainWindow", "Sorted heavy-edge", 0));
         random_matching->setText(QApplication::translate("MainWindow", "Random", 0));
-        minimization->setText(QApplication::translate("MainWindow", "Minimize :", 0));
         initial->setText(QApplication::translate("MainWindow", "Initial partitionning :", 0));
-        communication->setText(QApplication::translate("MainWindow", "Communication volume", 0));
-        edge_cut->setText(QApplication::translate("MainWindow", "Edge-cut", 0));
         greedy->setText(QApplication::translate("MainWindow", "Greedy", 0));
         random_bisection->setText(QApplication::translate("MainWindow", "Random bisection", 0));
+        minimization->setText(QApplication::translate("MainWindow", "Minimize :", 0));
+        edge_cut->setText(QApplication::translate("MainWindow", "Edge-cut", 0));
+        communication->setText(QApplication::translate("MainWindow", "Communication volume", 0));
     } // retranslateUi
 
 };

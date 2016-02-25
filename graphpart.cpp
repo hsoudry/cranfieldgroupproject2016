@@ -77,11 +77,19 @@ void GraphPart::extractName()
         input_filename = path_input;
 }
 
+bool GraphPart::CheckInputFile()
+{
+    ifstream myfile(path_input);
+    string temp;
+    getline(myfile, temp);
+
+    if((temp.find(" ")!=string::npos && inputType==graph) || (temp.find(" ")==string::npos && inputType==mesh)) return true;
+    else return false;
+
+}
+
 void GraphPart::Partition()
 {
-    if(inputType == mesh)
-        mesh2graph();
-
     //PARTITIONING
     string MetisCommand="gpmetis ";
     MetisCommand+=metisParams;
@@ -115,6 +123,18 @@ string GraphPart::getPathUncolored()
 string GraphPart::getPathColored()
 {
     return path_colored;
+}
+
+bool GraphPart::SetInputType(InputType type)
+{
+    inputType=type;
+    if(CheckInputFile()){
+        if(inputType == mesh)
+            mesh2graph();
+        return true;
+    }
+    else
+        return false;
 }
 
 rgb GraphPart::hsv2rgb(hsv in)

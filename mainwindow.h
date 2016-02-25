@@ -29,8 +29,8 @@ private:
     QGraphicsScene *scene=NULL;
 
     GraphPart graphPart;
-    void closeEvent (QCloseEvent *e);
-
+    void closeEvent (QCloseEvent);
+    QMessageBox msgbox;
 
 private slots:
     void on_ButtonVisualize_released();
@@ -43,6 +43,7 @@ private slots:
     void on_basicButton_released();
     void on_recursive_bisection_released();
     void on_kway_released();
+    void on_BoxInputPath_textChanged(const QString);
 };
 
 #endif // MAINWINDOW_H

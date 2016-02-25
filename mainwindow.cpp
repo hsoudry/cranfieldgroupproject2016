@@ -11,12 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ButtonVisualize->setEnabled(false);
     ui->advancedoptions->setVisible(false);
     this->setFixedSize(592,300); //minimum size
-
-    /*
-
-    graphPart.extractName();
-*/
-
+    msgbox.setWindowTitle(" ");
 }
 
 MainWindow::~MainWindow()
@@ -24,7 +19,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::closeEvent(QCloseEvent *e)
+void MainWindow::closeEvent(QCloseEvent)
 {
     if(item) delete item;
     if (scene) delete scene;
@@ -51,14 +46,12 @@ void MainWindow::on_ButtonVisualize_released()
         }
         else
         {
-            QMessageBox msgbox;
             msgbox.setText("Graph is too big to visualize!");
             msgbox.exec();
         }
     }
     else
     {
-        QMessageBox msgbox;
         msgbox.setText("Graph is not loaded!");
         msgbox.exec();
     }
@@ -78,7 +71,20 @@ void MainWindow::on_ButtonLoad_released()
 {
 
     graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
-    if(!ui->RadioGraph->isChecked()) graphPart.mesh2graph();
+    if(ui->RadioGraph->isChecked()) {
+        if(!graphPart.SetInputType(graph)){
+            msgbox.setText("Wrong type of input file!");
+            msgbox.exec();
+            return;
+        }
+    }
+    else{
+        if(!graphPart.SetInputType(mesh)){
+            msgbox.setText("Wrong type of input file!");
+            msgbox.exec();
+            return;
+        }
+    }
     if(graphPart.isDrawable()){
         ui->statusBar->showMessage("Graph is being loaded...");
         graphPart.SvgPrepare();
@@ -86,7 +92,6 @@ void MainWindow::on_ButtonLoad_released()
         ui->statusBar->showMessage("");
     }
     else{
-        QMessageBox msgbox;
         msgbox.setText("Graph is too big to visualize! You can only prepare partitions file");
         msgbox.exec();
     }
@@ -127,14 +132,12 @@ void MainWindow::on_ButtonsOkCancel_accepted()
         }
         else
         {
-            QMessageBox msgbox;
             msgbox.setText("Graph is too big to visualize! (only partitions file was prepared)");
             msgbox.exec();
         }
     }
     else
     {
-        QMessageBox msgbox;
         msgbox.setText("Graph is not loaded!");
         msgbox.exec();
     }
@@ -186,4 +189,9 @@ void MainWindow::on_kway_released()
     ui->edge_cut->setVisible(true);
     ui->communication->setVisible(true);
     ui->minimization->setVisible(true);
+}
+
+void MainWindow::on_BoxInputPath_textChanged(const QString)
+{
+    ui->ButtonVisualize->setEnabled(false);
 }

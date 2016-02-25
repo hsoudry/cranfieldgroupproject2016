@@ -11,6 +11,7 @@
 #include "string"
 #include "time.h"
 
+
 using namespace std;
 
 typedef struct {
@@ -48,10 +49,11 @@ public:
     void addMetisParameters(string params);
     string getPathUncolored();
     string getPathColored();
-
+    bool SetInputType(InputType type);
     void setNumberOfPart(int noOfPartitions);
     void mesh2graph();
     void extractName();
+    bool CheckInputFile();
 private:
     string path_input;
     string input_filename;
@@ -63,6 +65,7 @@ private:
 
     bool drawable;
     bool graphloaded;
+
 
     rgb hsv2rgb(hsv in);
     int NoOfPartitions;
