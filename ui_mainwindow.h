@@ -14,7 +14,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -66,6 +65,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QSpinBox *BoxNumberOfPartitions;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *pushButtonPartition;
     QHBoxLayout *horizontalLayout_7;
     QRadioButton *basicButton;
     QRadioButton *advancedButton;
@@ -102,16 +102,16 @@ public:
     QSpacerItem *horizontalSpacer_13;
     QHBoxLayout *horizontalLayout_10;
     QSpacerItem *horizontalSpacer_5;
-    QDialogButtonBox *ButtonsOkCancel;
+    QPushButton *pushButtonExit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QButtonGroup *buttonGroup_5;
-    QButtonGroup *buttonGroup_2;
-    QButtonGroup *buttonGroup_3;
-    QButtonGroup *buttonGroup;
-    QButtonGroup *buttonGroup_4;
     QButtonGroup *buttonGroup_6;
+    QButtonGroup *buttonGroup;
+    QButtonGroup *buttonGroup_3;
+    QButtonGroup *buttonGroup_4;
+    QButtonGroup *buttonGroup_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -264,6 +264,11 @@ public:
         horizontalSpacer_2 = new QSpacerItem(120, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_2);
+
+        pushButtonPartition = new QPushButton(groupBox_3);
+        pushButtonPartition->setObjectName(QStringLiteral("pushButtonPartition"));
+
+        horizontalLayout_4->addWidget(pushButtonPartition);
 
 
         verticalLayout_4->addLayout(horizontalLayout_4);
@@ -476,12 +481,10 @@ public:
 
         horizontalLayout_10->addItem(horizontalSpacer_5);
 
-        ButtonsOkCancel = new QDialogButtonBox(groupBox_3);
-        ButtonsOkCancel->setObjectName(QStringLiteral("ButtonsOkCancel"));
-        ButtonsOkCancel->setOrientation(Qt::Horizontal);
-        ButtonsOkCancel->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        pushButtonExit = new QPushButton(groupBox_3);
+        pushButtonExit->setObjectName(QStringLiteral("pushButtonExit"));
 
-        horizontalLayout_10->addWidget(ButtonsOkCancel);
+        horizontalLayout_10->addWidget(pushButtonExit);
 
 
         verticalLayout_5->addLayout(horizontalLayout_10);
@@ -524,6 +527,7 @@ public:
         ButtonVisualize->setText(QApplication::translate("MainWindow", "Visualize", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Step 3", 0));
         label->setText(QApplication::translate("MainWindow", "Number of partitions :", 0));
+        pushButtonPartition->setText(QApplication::translate("MainWindow", "Partition + Visualize", 0));
         basicButton->setText(QApplication::translate("MainWindow", "Basic partitionning", 0));
         advancedButton->setText(QApplication::translate("MainWindow", "Advanced partitionning", 0));
         advancedoptions->setTitle(QString());
@@ -539,6 +543,7 @@ public:
         minimization->setText(QApplication::translate("MainWindow", "Minimize :", 0));
         edge_cut->setText(QApplication::translate("MainWindow", "Edge-cut", 0));
         communication->setText(QApplication::translate("MainWindow", "Communication volume", 0));
+        pushButtonExit->setText(QApplication::translate("MainWindow", "Exit", 0));
     } // retranslateUi
 
 };
