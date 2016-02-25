@@ -51,11 +51,13 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		mainwindow.cpp \
 		graphpart.cpp \
-		graphvizpopup.cpp moc_mainwindow.cpp
+		graphvizpopup.cpp \
+		metisoutput.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		graphpart.o \
 		graphvizpopup.o \
+		metisoutput.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.5/gcc_64/mkspecs/common/unix.conf \
@@ -195,10 +197,12 @@ DIST          = ../../../../Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.5/gcc_64/mkspecs/features/lex.prf \
 		cranfieldgroupproject2016.pro mainwindow.h \
 		graphpart.h \
-		graphvizpopup.h main.cpp \
+		graphvizpopup.h \
+		metisoutput.h main.cpp \
 		mainwindow.cpp \
 		graphpart.cpp \
-		graphvizpopup.cpp
+		graphvizpopup.cpp \
+		metisoutput.cpp
 QMAKE_TARGET  = cranfieldgroupproject2016
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = cranfieldgroupproject2016
@@ -526,8 +530,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h graphpart.h graphvizpopup.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp graphpart.cpp graphvizpopup.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h graphpart.h graphvizpopup.h metisoutput.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp graphpart.cpp graphvizpopup.cpp metisoutput.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -673,7 +677,16 @@ moc_mainwindow.cpp: ../../../../Qt/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QDebug \
+		graphvizpopup.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/QWheelEvent \
 		graphpart.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QFileDialog \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qmessagebox.h \
 		mainwindow.h
 	/home/budzik444/Qt/5.5/gcc_64/bin/moc $(DEFINES) -I/home/budzik444/Qt/5.5/gcc_64/mkspecs/linux-g++ -I/home/budzik444/Documents/GROUP_PROJECT/git/cranfieldgroupproject2016 -I/home/budzik444/Qt/5.5/gcc_64/include -I/home/budzik444/Qt/5.5/gcc_64/include/QtSvg -I/home/budzik444/Qt/5.5/gcc_64/include/QtWidgets -I/home/budzik444/Qt/5.5/gcc_64/include/QtGui -I/home/budzik444/Qt/5.5/gcc_64/include/QtCore mainwindow.h -o moc_mainwindow.cpp
 
@@ -815,7 +828,16 @@ main.o: main.cpp mainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QDebug \
+		graphvizpopup.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/QWheelEvent \
 		graphpart.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QFileDialog \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/qcoreapplication.h \
@@ -945,7 +967,16 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QDebug \
+		graphvizpopup.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/QWheelEvent \
 		graphpart.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QFileDialog \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qmessagebox.h \
 		ui_mainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QLocale \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QVariant \
@@ -1096,25 +1127,40 @@ graphvizpopup.o: graphvizpopup.cpp graphvizpopup.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGraphicsScene \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpainter.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpaintdevice.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qcolor.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qtransform.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qmatrix.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpolygon.h \
 		../../../../Qt/5.5/gcc_64/include/QtCore/qline.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qtransform.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpainterpath.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qimage.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qpaintdevice.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpixelformat.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qpixmap.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qsharedpointer.h \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qfontinfo.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qfont.h \
-		../../../../Qt/5.5/gcc_64/include/QtGui/qpen.h
+		../../../../Qt/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphvizpopup.o graphvizpopup.cpp
+
+metisoutput.o: metisoutput.cpp metisoutput.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o metisoutput.o metisoutput.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

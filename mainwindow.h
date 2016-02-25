@@ -9,6 +9,8 @@
 #include "graphpart.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include "metisoutput.h"
+#include <vector>
 namespace Ui {
 class MainWindow;
 }
@@ -27,6 +29,7 @@ private:
     GraphVizPopUp *view=NULL;
     QGraphicsSvgItem *item=NULL;
     QGraphicsScene *scene=NULL;
+    vector<MetisOutput *> metisOuts;
 
     GraphPart graphPart;
     void closeEvent (QCloseEvent);
