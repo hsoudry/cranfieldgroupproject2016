@@ -211,6 +211,10 @@ void MainWindow::on_pushButtonTextOutput_clicked()
     tableCurrent->show();
     tableCurrent->setGeometry(20,20,300,300);
 
+    QStringList m_TableHeader;
+    m_TableHeader << "Parameter" << "Value";
+    tableCurrent->setHorizontalHeaderLabels(m_TableHeader);
+
     tableCurrent->setRowCount(paramsNames.size());
     tableCurrent->setColumnCount(2);
 
