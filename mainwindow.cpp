@@ -33,24 +33,33 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::on_ButtonVisualize_released()
 {
     if(graphPart.GraphIsLoaded()){
-        if(item) delete item;
-        if (scene) delete scene;
-        if (view) delete view;
-        scene = new QGraphicsScene();
-        item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathUncolored()));
-        scene->addItem(item);
+        if(graphPart.isDrawable()){
+            if(item) delete item;
+            if (scene) delete scene;
+            if (view) delete view;
+            scene = new QGraphicsScene();
+            item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathUncolored()));
+            scene->addItem(item);
 
-        view = new GraphVizPopUp();
-        view->setScene(scene);
-        view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
-        view->show();
-        // enables drag&drop
-        item->setFlag(QGraphicsItem::ItemIsMovable);}
+            view = new GraphVizPopUp();
+            view->setScene(scene);
+            view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+            view->show();
+            // enables drag&drop
+            item->setFlag(QGraphicsItem::ItemIsMovable);
+        }
+        else
+        {
+            QMessageBox msgbox;
+            msgbox.setText("Graph is too big to visualize!");
+            msgbox.exec();
+        }
+    }
     else
     {
         QMessageBox msgbox;
         msgbox.setText("Graph is not loaded!");
-        msgbox.show();
+        msgbox.exec();
     }
 }
 
@@ -69,28 +78,52 @@ void MainWindow::on_ButtonLoad_released()
 
     graphPart.setInputFileName(ui->BoxInputPath->text().toStdString());
     if(!ui->RadioGraph->isChecked()) graphPart.mesh2graph();
-    graphPart.SvgPrepare();
-    ui->ButtonVisualize->setEnabled(true);
+    if(graphPart.isDrawable()){
+        graphPart.SvgPrepare();
+        ui->ButtonVisualize->setEnabled(true);
+    }
+    else{
+        QMessageBox msgbox;
+        msgbox.setText("Graph is too big to visualize! You can only prepare partitions file");
+        msgbox.exec();
+    }
+
 }
 
 void MainWindow::on_ButtonsOkCancel_accepted()
 {
-    graphPart.Partition();
-    graphPart.GraphColoring();
+    if(graphPart.GraphIsLoaded()){
 
-    if(item) delete item;
-    if (scene) delete scene;
-    if (view) delete view;
-    scene = new QGraphicsScene();
-    item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathColored()));
-    scene->addItem(item);
+        graphPart.Partition();
+        graphPart.GraphColoring();
+        if(graphPart.isDrawable()){
+            if(item) delete item;
+            if (scene) delete scene;
+            if (view) delete view;
+            scene = new QGraphicsScene();
+            item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathColored()));
+            scene->addItem(item);
 
-    view = new GraphVizPopUp();
-    view->setScene(scene);
-    view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
-    view->show();
-    // enables drag&drop
-    item->setFlag(QGraphicsItem::ItemIsMovable);
+            view = new GraphVizPopUp();
+            view->setScene(scene);
+            view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+            view->show();
+            // enables drag&drop
+            item->setFlag(QGraphicsItem::ItemIsMovable);
+        }
+        else
+        {
+            QMessageBox msgbox;
+            msgbox.setText("Graph is too big to visualize! (only partitions file was prepared)");
+            msgbox.exec();
+        }
+    }
+    else
+    {
+        QMessageBox msgbox;
+        msgbox.setText("Graph is not loaded!");
+        msgbox.exec();
+    }
 }
 
 void MainWindow::on_ButtonsOkCancel_rejected()

@@ -48,6 +48,8 @@ void GraphPart::checkIfDrawable()
 void GraphPart::setInputFileName(string filename)
 {
     path_input = filename;
+    graphloaded= true;
+    checkIfDrawable();
 }
 
 void GraphPart::setNumberOfPart(int noOfPartitions)
@@ -96,7 +98,7 @@ void GraphPart::SvgPrepare()
     string GraphModCommand="ipython3 -c 'import graph_mod; graph_mod.raw_to_svg(\"";
     GraphModCommand=GraphModCommand+path_input+"\",\"" + path_uncolored + "\",progress=False)'";
     system(GraphModCommand.c_str());
-    graphloaded= true;
+
 
 }
 
