@@ -39,14 +39,15 @@ private slots:
     void on_ButtonVisualize_released();
     void on_ButtonBrowse_released();
     void on_ButtonLoad_released();
-    void on_ButtonsOkCancel_accepted();
-    void on_ButtonsOkCancel_rejected();
     void on_BoxNumberOfPartitions_valueChanged(int arg1);
     void on_advancedButton_released();
     void on_basicButton_released();
     void on_recursive_bisection_released();
     void on_kway_released();
     void on_BoxInputPath_textChanged(const QString);
+
+    void on_pushButtonExit_clicked();
+    void on_pushButtonPartition_clicked();
 };
 
 #endif // MAINWINDOW_H

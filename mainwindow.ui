@@ -214,6 +214,13 @@
                    </property>
                   </spacer>
                  </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonPartition">
+                   <property name="text">
+                    <string>Partition + Visualize</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
                <item>
@@ -622,12 +629,9 @@
               </spacer>
              </item>
              <item>
-              <widget class="QDialogButtonBox" name="ButtonsOkCancel">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="standardButtons">
-                <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+              <widget class="QPushButton" name="pushButtonExit">
+               <property name="text">
+                <string>Exit</string>
                </property>
               </widget>
              </item>
@@ -668,10 +672,10 @@
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
