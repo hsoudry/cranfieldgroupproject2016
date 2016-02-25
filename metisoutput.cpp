@@ -42,6 +42,22 @@ MetisOutput::MetisOutput(string FileName)
                 MaxImbalance=stof(temp.substr(0,temp.find(" ")));
                 temp=line;
             }
+            if(temp.find("ptype")!=string::npos){
+                temp=temp.substr(temp.find("ptype=")+6,temp.length());
+                ptype=temp.substr(0,temp.find(","));
+                temp=line;
+
+                temp=temp.substr(temp.find("objtype=")+8,temp.length());
+                objtype=temp.substr(0,temp.find(","));
+                temp=line;
+
+                temp=temp.substr(temp.find("ctype=")+6,temp.length());
+                ctype=temp.substr(0,temp.find(","));
+                temp=line;
+
+                temp=temp.substr(temp.find("iptype=")+7,temp.length());
+                iptype=temp.substr(0,temp.find("\n"));
+            }
         }
         myfile.close();
     }
@@ -76,4 +92,24 @@ int MetisOutput::GetCommunicationVol() const
 float MetisOutput::GetMaxImbalance() const
 {
     return MaxImbalance;
+}
+
+string MetisOutput::GetPtype() const
+{
+    return ptype;
+}
+
+string MetisOutput::GetObjtype() const
+{
+    return objtype;
+}
+
+string MetisOutput::GetCtype() const
+{
+    return ctype;
+}
+
+string MetisOutput::GetIptype() const
+{
+    return iptype;
 }

@@ -13,6 +13,10 @@ public:
     int GetEdgeCut() const;
     int GetCommunicationVol() const ;
     float GetMaxImbalance() const;
+    std::string GetPtype() const;
+    std::string GetObjtype() const;
+    std::string GetCtype() const;
+    std::string GetIptype() const;
 private:
     int NoOfVertices;
     int NoOfEdges;
@@ -20,6 +24,11 @@ private:
     int EdgeCut;
     int CommunicationVol;
     float MaxImbalance;
+    std::string ptype;
+    std::string objtype;
+    std::string ctype;
+    std::string iptype;
+
 
 };
 
