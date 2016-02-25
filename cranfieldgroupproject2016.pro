@@ -29,8 +29,7 @@ HEADERS  += mainwindow.h \
     metisoutput.h
     outtextdialog.h
 
-FORMS    += mainwindow.ui \
-    outtextdialog.ui
+FORMS    += mainwindow.ui
 
 OTHER_FILES += \
     graph_mod.py

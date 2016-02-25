@@ -11,11 +11,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+
 #include <vector>
 #include <string>
-
 #include "metisoutput.h"
-#include <vector>
 
 namespace Ui {
 class MainWindow;
