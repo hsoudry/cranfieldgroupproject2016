@@ -21,13 +21,16 @@ SOURCES += main.cpp\
     graphpart.cpp \
     graphvizpopup.cpp \
     metisoutput.cpp
+    outtextdialog.cpp
 
 HEADERS  += mainwindow.h \
     graphpart.h \
     graphvizpopup.h \
     metisoutput.h
+    outtextdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    outtextdialog.ui
 
 OTHER_FILES += \
     graph_mod.py
