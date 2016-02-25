@@ -45,7 +45,7 @@ public:
     void GraphColoring();
     bool isDrawable();
     bool GraphIsLoaded();
-    void Partition();
+    string Partition();
     void checkIfDrawable();
     void SvgPrepare();
     void addMetisParameters(string params);

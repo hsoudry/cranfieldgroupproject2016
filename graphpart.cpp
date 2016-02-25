@@ -88,7 +88,7 @@ bool GraphPart::CheckInputFile()
 
 }
 
-void GraphPart::Partition()
+string GraphPart::Partition()
 {
     if(!QDir("metisOut").exists())
         QDir().mkdir("metisOut");
@@ -105,6 +105,8 @@ void GraphPart::Partition()
     MetisCommand+= to_string(NoOfPartitions);
     MetisCommand+=" > " + path_metisOut;
     system(MetisCommand.c_str());
+
+    return path_metisOut;
 }
 
 void GraphPart::SvgPrepare()

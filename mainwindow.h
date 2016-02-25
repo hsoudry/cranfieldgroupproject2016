@@ -43,7 +43,7 @@ private:
     void closeEvent (QCloseEvent);
     QMessageBox msgbox;
 
-    std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Communicationvol", "Max imbalance"};
+    std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Partitioning", "Matching", "Initial", "Minimize", "Communicationvol", "Max imbalance"};
 
 private slots:
     void on_ButtonVisualize_released();
