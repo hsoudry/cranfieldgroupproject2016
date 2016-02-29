@@ -35,18 +35,17 @@ private:
     GraphVizPopUp *view=NULL;
     QGraphicsSvgItem *item=NULL;
     QGraphicsScene *scene=NULL;
-    vector<MetisOutput *> metisOuts;
-
     QTableWidget *tableCurrent=NULL;
 
-    GraphPart graphPart;
-    void closeEvent (QCloseEvent);
-    QMessageBox msgbox;
+    vector<MetisOutput *> metisOuts;
 
+    GraphPart graphPart;
+    QMessageBox msgbox;
     std::vector<string> paramsNames = {"Vertices", "Edges", "Partitions", "Partitioning", "Matching", "Initial", "Objective fun.", "Edgecut", "Comm. volume",  "Max. imbalance"};
 
     void export2CSV();
     void showTable();
+    void closeEvent (QCloseEvent);
 
 private slots:
     void on_ButtonVisualize_released();

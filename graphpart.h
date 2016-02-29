@@ -7,13 +7,11 @@
 #include <algorithm>
 #include <QDateTime>
 #include <QDir>
-#include <QDebug>
 
 #include "stdio.h"
 #include "iostream"
 #include "string"
 #include "time.h"
-
 
 using namespace std;
 
@@ -67,21 +65,17 @@ public:
 private:
     string path_input;
     string input_filename;
+    int NoOfPartitions;
     const string path_uncolored = "graph_uncolored.svg";
     const string path_colored = "graph_colored.svg";
     string path_metisOut = "out.txt";
     string metisParams="";
+    bool drawable;
+    bool graphloaded;
     InputType inputType;
     Mesh2GraphType m2gType;
 
-    bool drawable;
-    bool graphloaded;
-
-
     rgb hsv2rgb(hsv in);
-    int NoOfPartitions;
-
-
     string removeWSpacesB(string str);
 };
 
