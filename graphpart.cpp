@@ -87,7 +87,6 @@ bool GraphPart::CheckInputFile()
 
     if((temp.find(" ")!=string::npos && inputType==graph) || (temp.find(" ")==string::npos && inputType==mesh)) return true;
     else return false;
-
 }
 
 string GraphPart::Partition()

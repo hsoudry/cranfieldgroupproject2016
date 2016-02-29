@@ -10,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ButtonLoad->setEnabled(false);
     ui->ButtonVisualize->setEnabled(false);
     ui->pushButtonPartition->setEnabled(false);
+    ui->pushButtonTextOutput->setEnabled(false);
+    ui->pushButtonExport2CSV->setEnabled(false);
     ui->advancedoptions->setVisible(false);
-    this->setFixedSize(592,300); //minimum size
+    this->setFixedSize(592,340); //minimum size
     msgbox.setWindowTitle(" ");
 }
 
@@ -105,21 +107,19 @@ void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
     graphPart.setNumberOfPart(arg1);
 }
 
-
 void MainWindow::on_advancedButton_released()
 {
-    this->setFixedSize(592,464);
+    this->setFixedSize(592,462);
     ui->greedy->setVisible(false);
     ui->random_bisection->setVisible(false);
     ui->initial->setVisible(false);
     ui->advancedoptions->setVisible(true);
-
 }
 
 void MainWindow::on_basicButton_released()
 {
     ui->advancedoptions->setVisible(false);
-    this->setFixedSize(592,300); // minimum size
+    this->setFixedSize(592,340); // minimum size
 }
 
 void MainWindow::on_recursive_bisection_released()
@@ -191,6 +191,7 @@ void MainWindow::on_pushButtonPartition_clicked()
                 msgbox.setText("Graph is too big to visualize! (only partitions file was prepared)");
                 msgbox.exec();
             }
+            ui->pushButtonTextOutput->setEnabled(true);
         }
         else
         {
@@ -203,7 +204,7 @@ void MainWindow::on_pushButtonTextOutput_clicked()
 {
     tableCurrent = new QTableWidget(paramsNames.size()+1,metisOuts.size());
     tableCurrent->show();
-    tableCurrent->setGeometry(20,20,300,300);
+    tableCurrent->setGeometry(20,20,300,350);
 
     //QStringList m_TableHeaderH;
     //m_TableHeaderH << "Parameter" << "Value";
@@ -265,4 +266,40 @@ void MainWindow::on_pushButtonTextOutput_clicked()
         tableItem_y8->setFlags(tableItem_y8->flags() ^ Qt::ItemIsEditable);
         tableItem_y9->setFlags(tableItem_y9->flags() ^ Qt::ItemIsEditable);
     }
+    ui->pushButtonExport2CSV->setEnabled(true);
+
+}
+
+void MainWindow::export2CSV()
+{
+
+    QDateTime dateTime = QDateTime::currentDateTime();
+    string path = "history_" + dateTime.toString(Qt::ISODate).toStdString() + ".csv";
+
+    QFile f( QString::fromStdString(path) );
+
+    if (f.open(QFile::WriteOnly | QFile::Truncate))
+    {
+
+        QTextStream data( &f );
+        QStringList strList;
+
+        for( int r = 0; r < tableCurrent->rowCount(); ++r )
+        {
+            strList.clear();
+            strList << "\" " + tableCurrent->verticalHeaderItem(r)->text() + "\" ";  //data(Qt::DisplayRole).toString()
+            for( int c = 0; c < tableCurrent->columnCount(); ++c )
+            {
+                strList << "\" " + tableCurrent->item( r, c )->text() + "\" ";
+            }
+            data << strList.join( ";" )+"\n";
+        }
+
+        f.close();
+    }
+}
+
+void MainWindow::on_pushButtonExport2CSV_clicked()
+{
+    export2CSV();
 }

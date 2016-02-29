@@ -45,6 +45,7 @@ private:
 
     std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Communicationvol",  "Max imbalance", "Partitioning", "Matching", "Initial", "Minimize"};
 
+    void export2CSV();
 private slots:
     void on_ButtonVisualize_released();
     void on_ButtonBrowse_released();
@@ -60,6 +61,7 @@ private slots:
     void on_pushButtonPartition_clicked();
     void on_pushButtonTextOutput_clicked();
 
+    void on_pushButtonExport2CSV_clicked();
 };
 
 #endif // MAINWINDOW_H
