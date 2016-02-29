@@ -14,8 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButtonExport2CSV->setEnabled(false);
     ui->pushButtonPartitionOnly->setEnabled(false);
     ui->pushButtonVisualize->setEnabled(false);
+    ui->radioButtonM2GDual->setEnabled(false);
+    ui->radioButtonM2GNodal->setEnabled(false);
     ui->advancedoptions->setVisible(false);
-    this->setFixedSize(592,350); //minimum size
+    this->setFixedSize(592,380); //minimum size
     msgbox.setWindowTitle(" ");
 }
 
@@ -88,7 +90,13 @@ void MainWindow::on_ButtonLoad_released()
             }
         }
         else{
-            if(!graphPart.SetInputType(mesh)){
+            Mesh2GraphType m2g;
+            if(ui->radioButtonM2GDual->isChecked())
+                m2g = dual;
+            if(ui->radioButtonM2GNodal->isChecked())
+                m2g = nodal;
+
+            if(!graphPart.SetInputType(mesh, m2g)){
                 msgbox.setText("Wrong type of input file!");
                 msgbox.exec();
                 ui->pushButtonVisualize->setEnabled(false);
@@ -128,7 +136,7 @@ void MainWindow::on_BoxNumberOfPartitions_valueChanged(int arg1)
 
 void MainWindow::on_advancedButton_released()
 {
-    this->setFixedSize(592,462);
+    this->setFixedSize(592,492);
     ui->greedy->setVisible(false);
     ui->random_bisection->setVisible(false);
     ui->initial->setVisible(false);
@@ -138,7 +146,7 @@ void MainWindow::on_advancedButton_released()
 void MainWindow::on_basicButton_released()
 {
     ui->advancedoptions->setVisible(false);
-    this->setFixedSize(592,350); // minimum size
+    this->setFixedSize(592,380); // minimum size
 }
 
 void MainWindow::on_recursive_bisection_released()
@@ -394,4 +402,17 @@ void MainWindow::on_pushButtonClearTable_clicked()
 
     metisOuts.clear();
 
+}
+
+void MainWindow::on_RadioMesh_clicked()
+{
+    ui->radioButtonM2GDual->setEnabled(true);
+    ui->radioButtonM2GNodal->setEnabled(true);
+    ui->radioButtonM2GDual->setChecked(true);
+}
+
+void MainWindow::on_RadioGraph_clicked()
+{
+    ui->radioButtonM2GDual->setEnabled(false);
+    ui->radioButtonM2GNodal->setEnabled(false);
 }

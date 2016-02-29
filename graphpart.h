@@ -34,6 +34,11 @@ enum InputType{
     mesh
 };
 
+enum Mesh2GraphType{
+    dual,
+    nodal
+};
+
 rgb hsv2rgb(hsv in);
 
 
@@ -52,11 +57,13 @@ public:
     void addMetisParameters(string params);
     string getPathUncolored();
     string getPathColored();
-    bool SetInputType(InputType type);
+    bool SetInputType(InputType type, Mesh2GraphType m2g = dual);
     void setNumberOfPart(int noOfPartitions);
     void mesh2graph();
     string extractName();
     bool CheckInputFile();
+    Mesh2GraphType getM2GType();
+
 private:
     string path_input;
     string input_filename;
@@ -65,6 +72,7 @@ private:
     string path_metisOut = "out.txt";
     string metisParams="";
     InputType inputType;
+    Mesh2GraphType m2gType;
 
     bool drawable;
     bool graphloaded;

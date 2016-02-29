@@ -12,6 +12,7 @@ using namespace std;
 GraphPart::GraphPart()
 {
     inputType = graph;
+    m2gType = dual;
     drawable = true;
     graphloaded = false;
     NoOfPartitions=2;
@@ -73,6 +74,9 @@ void GraphPart::mesh2graph()
     //PARTITIONING
     string MetisCommand="m2gmetis ";
 
+    if(m2gType == nodal)
+         MetisCommand += " -gtype=nodal ";
+
     MetisCommand += path_input;
     MetisCommand += " ";
     path_input+=".graph";
@@ -101,6 +105,11 @@ bool GraphPart::CheckInputFile()
 
     if((temp.find(" ")!=string::npos && inputType==graph) || (temp.find(" ")==string::npos && inputType==mesh)) return true;
     else return false;
+}
+
+Mesh2GraphType GraphPart::getM2GType()
+{
+    return m2gType;
 }
 
 string GraphPart::Partition()
@@ -149,12 +158,14 @@ string GraphPart::getPathColored()
     return path_colored;
 }
 
-bool GraphPart::SetInputType(InputType type)
+bool GraphPart::SetInputType(InputType type, Mesh2GraphType m2g)
 {
     inputType=type;
     if(CheckInputFile()){
-        if(inputType == mesh)
+        if(inputType == mesh){
             mesh2graph();
+            m2gType = m2g;
+        }
         return true;
     }
     else

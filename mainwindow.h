@@ -68,6 +68,8 @@ private slots:
     void on_pushButtonVisualize_clicked();
     void on_BoxNumberOfPartitions_valueChanged(const QString);
     void on_pushButtonClearTable_clicked();
+    void on_RadioMesh_clicked();
+    void on_RadioGraph_clicked();
 };
 
 #endif // MAINWINDOW_H
