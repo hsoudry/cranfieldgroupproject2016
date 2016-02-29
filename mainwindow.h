@@ -46,6 +46,7 @@ private:
     std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Communicationvol",  "Max imbalance", "Partitioning", "Matching", "Initial", "Minimize"};
 
     void export2CSV();
+    void showTable();
 private slots:
     void on_ButtonVisualize_released();
     void on_ButtonBrowse_released();

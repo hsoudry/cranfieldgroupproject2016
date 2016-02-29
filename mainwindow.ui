@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>592</width>
-    <height>608</height>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -618,65 +618,66 @@
            </item>
           </layout>
          </item>
-         <item row="3" column="0">
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>80</height>
-            </size>
-           </property>
-           <property name="title">
-            <string>Step 4</string>
-           </property>
-           <widget class="QPushButton" name="pushButtonExit">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>50</y>
-              <width>541</width>
-              <height>27</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Exit</string>
-            </property>
-           </widget>
-           <widget class="QWidget" name="horizontalLayoutWidget">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>20</y>
-              <width>541</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <item>
-              <widget class="QPushButton" name="pushButtonTextOutput">
-               <property name="text">
-                <string>Compare Results</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButtonExport2CSV">
-               <property name="text">
-                <string>Export to CSV</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Step 4</string>
+      </property>
+      <widget class="QPushButton" name="pushButtonExit">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>50</y>
+         <width>561</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Exit</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>561</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <widget class="QPushButton" name="pushButtonTextOutput">
+          <property name="text">
+           <string>Compare Results</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonExport2CSV">
+          <property name="text">
+           <string>Export to CSV</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
    </layout>
    <zorder></zorder>
+   <zorder>groupBox_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
