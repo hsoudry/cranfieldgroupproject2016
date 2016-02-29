@@ -5,15 +5,16 @@
 #include <QGraphicsSvgItem>
 #include <QGraphicsView>
 #include <QDebug>
-#include "graphvizpopup.h"
-#include "outtextdialog.h"
-#include "graphpart.h"
 #include <QFileDialog>
 #include <QMessageBox>
-
+#include <QCloseEvent>
 
 #include <vector>
 #include <string>
+
+#include "graphvizpopup.h"
+#include "outtextdialog.h"
+#include "graphpart.h"
 #include "metisoutput.h"
 
 namespace Ui {
@@ -37,16 +38,16 @@ private:
     vector<MetisOutput *> metisOuts;
 
     QTableWidget *tableCurrent=NULL;
-    QTableWidget *tableComparison=NULL;
 
     GraphPart graphPart;
     void closeEvent (QCloseEvent);
     QMessageBox msgbox;
 
-    std::vector<string> paramsNames = {"Vertices", "Edges", "Parts", "Edgecut", "Communicationvol",  "Max imbalance", "Partitioning", "Matching", "Initial", "Minimize"};
+    std::vector<string> paramsNames = {"Vertices", "Edges", "Partitions", "Partitioning", "Matching", "Initial", "Objective fun.", "Edgecut", "Comm. volume",  "Max. imbalance"};
 
     void export2CSV();
     void showTable();
+
 private slots:
     void on_ButtonVisualize_released();
     void on_ButtonBrowse_released();
@@ -63,6 +64,10 @@ private slots:
     void on_pushButtonTextOutput_clicked();
 
     void on_pushButtonExport2CSV_clicked();
+    void on_pushButtonPartitionOnly_clicked();
+    void on_pushButtonVisualize_clicked();
+    void on_BoxNumberOfPartitions_valueChanged(const QString);
+    void on_pushButtonClearTable_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>592</width>
+    <width>619</width>
     <height>523</height>
    </rect>
   </property>
@@ -124,6 +124,9 @@
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="0">
               <widget class="QPushButton" name="ButtonVisualize">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visualize unpartitioned graph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Visualize</string>
                </property>
@@ -199,25 +202,32 @@
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                  <widget class="QPushButton" name="pushButtonPartitionOnly">
+                   <property name="text">
+                    <string>Partition</string>
                    </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonVisualize">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visualize partitioned graph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>120</width>
-                     <height>20</height>
-                    </size>
+                   <property name="text">
+                    <string>Visualize</string>
                    </property>
-                  </spacer>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButtonPartition">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="text">
-                    <string>Partition + Visualize</string>
+                    <string>Part + Visualize</string>
                    </property>
                   </widget>
                  </item>
@@ -228,7 +238,7 @@
                  <item>
                   <widget class="QRadioButton" name="basicButton">
                    <property name="text">
-                    <string>Basic partitionning</string>
+                    <string>Basic partitioning</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -241,7 +251,7 @@
                  <item>
                   <widget class="QRadioButton" name="advancedButton">
                    <property name="text">
-                    <string>Advanced partitionning</string>
+                    <string>Advanced partitioning</string>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">buttonGroup_5</string>
@@ -279,6 +289,9 @@
                    <layout class="QHBoxLayout" name="horizontalLayout_8">
                     <item>
                      <widget class="QLabel" name="partitionning">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scheme used for computing the partitioning.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Partitionning :</string>
                       </property>
@@ -302,6 +315,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="kway">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Multilevel k-way partitioning. &lt;span style=&quot; font-style:italic;&quot;&gt;default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>k-way partitionning</string>
                       </property>
@@ -328,6 +344,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="recursive_bisection">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Multilevel recursive bisectioning.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Recursive bisectionning</string>
                       </property>
@@ -367,6 +386,9 @@
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scheme used to match the vertices of the graph during the coarsening.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Matching :</string>
                       </property>
@@ -390,6 +412,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="sorted">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sorted heavy-edge matching. &lt;span style=&quot; font-style:italic;&quot;&gt;default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Sorted heavy-edge</string>
                       </property>
@@ -416,6 +441,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="random_matching">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Random matching.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Random</string>
                       </property>
@@ -452,6 +480,9 @@
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scheme used to compute the initial partitioning of the graph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Initial partitionning :</string>
                       </property>
@@ -475,6 +506,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="greedy">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Grows a bisection using a greedy strategy. &lt;span style=&quot; font-style:italic;&quot;&gt;default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Greedy</string>
                       </property>
@@ -501,6 +535,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="random_bisection">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Computes a bisection at random followed by a refinement.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Random bisection</string>
                       </property>
@@ -531,6 +568,9 @@
                    <layout class="QHBoxLayout" name="horizontalLayout_9">
                     <item>
                      <widget class="QLabel" name="minimization">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Partitioning’s objective function.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Minimize :</string>
                       </property>
@@ -554,6 +594,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="edge_cut">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edgecut minimization. &lt;span style=&quot; font-style:italic;&quot;&gt;default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Edge-cut</string>
                       </property>
@@ -580,6 +623,9 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="communication">
+                      <property name="toolTip">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Total communication volume minimization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
                       <property name="text">
                        <string>Communication volume</string>
                       </property>
@@ -659,13 +705,26 @@
        <layout class="QHBoxLayout" name="horizontalLayout_11">
         <item>
          <widget class="QPushButton" name="pushButtonTextOutput">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display results in a table.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>Compare Results</string>
           </property>
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButtonClearTable">
+          <property name="text">
+           <string>Clear Table</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="pushButtonExport2CSV">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Export results to CSV file - located in the program directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>Export to CSV</string>
           </property>
@@ -684,7 +743,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>592</width>
+     <width>619</width>
      <height>25</height>
     </rect>
    </property>

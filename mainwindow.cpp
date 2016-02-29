@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButtonPartition->setEnabled(false);
     ui->pushButtonTextOutput->setEnabled(false);
     ui->pushButtonExport2CSV->setEnabled(false);
+    ui->pushButtonPartitionOnly->setEnabled(false);
+    ui->pushButtonVisualize->setEnabled(false);
     ui->advancedoptions->setVisible(false);
     this->setFixedSize(592,350); //minimum size
     msgbox.setWindowTitle(" ");
@@ -24,6 +26,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent)
 {
+    if(tableCurrent) delete tableCurrent;
     if(item) delete item;
     if (scene) delete scene;
     if (view) delete view;
@@ -78,6 +81,9 @@ void MainWindow::on_ButtonLoad_released()
             if(!graphPart.SetInputType(graph)){
                 msgbox.setText("Wrong type of input file!");
                 msgbox.exec();
+                ui->pushButtonVisualize->setEnabled(false);
+                ui->pushButtonPartition->setEnabled(false);
+                ui->pushButtonPartitionOnly->setEnabled(false);
                 return;
             }
         }
@@ -85,20 +91,29 @@ void MainWindow::on_ButtonLoad_released()
             if(!graphPart.SetInputType(mesh)){
                 msgbox.setText("Wrong type of input file!");
                 msgbox.exec();
+                ui->pushButtonVisualize->setEnabled(false);
+                ui->pushButtonPartition->setEnabled(false);
+                ui->pushButtonPartitionOnly->setEnabled(false);
                 return;
             }
         }
         if(graphPart.isDrawable()){
-            ui->statusBar->showMessage("Graph is loading...");
+            ui->statusBar->showMessage("Loading the graph (please wait) ...");
             graphPart.SvgPrepare();
             ui->ButtonVisualize->setEnabled(true);
             ui->pushButtonPartition->setEnabled(true);
+            ui->pushButtonPartitionOnly->setEnabled(true);
             ui->statusBar->showMessage("");
         }
         else{
             msgbox.setText("Graph is too big to visualize! You can only prepare partitions file");
             msgbox.exec();
+
+            ui->pushButtonPartitionOnly->setEnabled(true);
         }
+        ui->pushButtonVisualize->setEnabled(false);
+        //ui->pushButtonPartition->setEnabled(false);
+        //ui->pushButtonPartitionOnly->setEnabled(false);
     }
     else{
         msgbox.setText("No file path chosen!");
@@ -188,6 +203,7 @@ void MainWindow::on_pushButtonPartition_clicked()
             view->show();
             // enables drag&drop
             item->setFlag(QGraphicsItem::ItemIsMovable);
+            ui->pushButtonVisualize->setEnabled(true);
         }
         else
         {
@@ -212,42 +228,47 @@ void MainWindow::showTable()
 {
     if(tableCurrent != NULL) delete tableCurrent;
     tableCurrent = new QTableWidget(paramsNames.size()+1,metisOuts.size());
+    tableCurrent->setWindowTitle("Result comparison");
     tableCurrent->show();
-    tableCurrent->setGeometry(30,30,450,380);
+
+    int sizeExtend = tableCurrent->columnCount();
+    sizeExtend *= 100;
+
+    tableCurrent->setGeometry(30,30,150+sizeExtend,380);
 
     QStringList m_TableHeaderV;
+    m_TableHeaderV << "Name";
     for(int i = 0; i<paramsNames.size(); i++)
     {
         m_TableHeaderV << QString::fromStdString(paramsNames[i]);
     }
-    m_TableHeaderV << "Name";
     tableCurrent->setVerticalHeaderLabels(m_TableHeaderV);
 
     for(int j = 0; j<metisOuts.size(); j++)
     {
         QTableWidgetItem *tableItem_y10 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetName()));
-        tableCurrent->setItem(10, j, tableItem_y10);
+        tableCurrent->setItem(0, j, tableItem_y10);
 
         QTableWidgetItem *tableItem_y0 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfVertices()));
-        tableCurrent->setItem(0, j, tableItem_y0);
+        tableCurrent->setItem(1, j, tableItem_y0);
         QTableWidgetItem *tableItem_y1 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfEdges()));
-        tableCurrent->setItem(1, j, tableItem_y1);
+        tableCurrent->setItem(2, j, tableItem_y1);
         QTableWidgetItem *tableItem_y2 = new QTableWidgetItem(QString::number(metisOuts[j]->GetNoOfParts()));
-        tableCurrent->setItem(2, j, tableItem_y2);
+        tableCurrent->setItem(3, j, tableItem_y2);
         QTableWidgetItem *tableItem_y3 = new QTableWidgetItem(QString::number(metisOuts[j]->GetEdgeCut()));
-        tableCurrent->setItem(3, j, tableItem_y3);
+        tableCurrent->setItem(8, j, tableItem_y3);
         QTableWidgetItem *tableItem_y4 = new QTableWidgetItem(QString::number(metisOuts[j]->GetCommunicationVol()));
-        tableCurrent->setItem(4, j, tableItem_y4);
-        QTableWidgetItem *tableItem_y5 = new QTableWidgetItem(QString::number(metisOuts[j]->GetMaxImbalance()));
-        tableCurrent->setItem(5, j, tableItem_y5);
+        tableCurrent->setItem(9, j, tableItem_y4);
+        QTableWidgetItem *tableItem_y5 = new QTableWidgetItem(QString::number((metisOuts[j]->GetMaxImbalance()-1)*100)+"%");
+        tableCurrent->setItem(10, j, tableItem_y5);
         QTableWidgetItem *tableItem_y6 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetPtype()));
-        tableCurrent->setItem(6, j, tableItem_y6);
+        tableCurrent->setItem(4, j, tableItem_y6);
         QTableWidgetItem *tableItem_y7 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetObjtype()));
-        tableCurrent->setItem(7, j, tableItem_y7);
+        tableCurrent->setItem(5, j, tableItem_y7);
         QTableWidgetItem *tableItem_y8 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetCtype()));
-        tableCurrent->setItem(8, j, tableItem_y8);
+        tableCurrent->setItem(6, j, tableItem_y8);
         QTableWidgetItem *tableItem_y9 = new QTableWidgetItem(QString::fromStdString(metisOuts[j]->GetIptype()));
-        tableCurrent->setItem(9, j, tableItem_y9);
+        tableCurrent->setItem(7, j, tableItem_y9);
 
         tableItem_y0->setFlags(tableItem_y0->flags() ^ Qt::ItemIsEditable);
         tableItem_y1->setFlags(tableItem_y1->flags() ^ Qt::ItemIsEditable);
@@ -265,32 +286,112 @@ void MainWindow::showTable()
 
 void MainWindow::export2CSV()
 {
-    QDateTime dateTime = QDateTime::currentDateTime();
-    string path = "history_" + dateTime.toString(Qt::ISODate).toStdString() + ".csv";
-
-    QFile f( QString::fromStdString(path) );
-
-    if (f.open(QFile::WriteOnly | QFile::Truncate))
+    if(tableCurrent->item(0,0) !=0 )
     {
+        QDateTime dateTime = QDateTime::currentDateTime();
+        string path = "history_" + dateTime.toString(Qt::ISODate).toStdString() + ".csv";
 
-        QTextStream data( &f );
-        QStringList strList;
+        QFile f( QString::fromStdString(path) );
 
-        for( int r = 0; r < tableCurrent->rowCount(); ++r )
+        if (f.open(QFile::WriteOnly | QFile::Truncate))
         {
-            strList.clear();
-            strList << "\" " + tableCurrent->verticalHeaderItem(r)->text() + "\" ";  //data(Qt::DisplayRole).toString()
-            for( int c = 0; c < tableCurrent->columnCount(); ++c )
+
+            QTextStream data( &f );
+            QStringList strList;
+
+            for( int r = 0; r < tableCurrent->rowCount(); ++r )
             {
-                strList << "\" " + tableCurrent->item( r, c )->text() + "\" ";
+                strList.clear();
+                strList << "\" " + tableCurrent->verticalHeaderItem(r)->text() + "\" ";  //data(Qt::DisplayRole).toString()
+                for( int c = 0; c < tableCurrent->columnCount(); ++c )
+                {
+                    strList << "\" " + tableCurrent->item( r, c )->text() + "\" ";
+                }
+                data << strList.join( ";" )+"\n";
             }
-            data << strList.join( ";" )+"\n";
+            f.close();
         }
-        f.close();
+    }
+    else
+    {
+        msgbox.setText("No data in the table!");
+        msgbox.exec();
     }
 }
 
 void MainWindow::on_pushButtonExport2CSV_clicked()
 {
     export2CSV();
+}
+
+void MainWindow::on_pushButtonPartitionOnly_clicked()
+{
+    if(graphPart.GraphIsLoaded()){
+        if(ui->advancedButton->isChecked()){
+            string MetisOptions="";
+            if (ui->kway->isChecked()) MetisOptions+="-ptype=kway ";
+            if (ui->recursive_bisection->isChecked()) MetisOptions+="-ptype=rb ";
+            if (ui->sorted->isChecked()) MetisOptions+="-ctype=shem ";
+            if (ui->random_matching->isChecked()) MetisOptions+="-ctype=rm ";
+            if (ui->greedy->isChecked()) MetisOptions+="-iptype=grow ";
+            if (ui->random_bisection->isChecked()) MetisOptions+="-iptype=random ";
+            if (ui->edge_cut->isChecked()) MetisOptions+="-objtype=cut ";
+            if (ui->communication->isChecked()) MetisOptions+="-objtype=vol ";
+            graphPart.addMetisParameters(MetisOptions);
+        }
+        metisOuts.push_back(new MetisOutput(graphPart.Partition(),graphPart.extractName()));
+
+        graphPart.GraphColoring();
+
+        ui->pushButtonTextOutput->setEnabled(true);
+        ui->pushButtonVisualize->setEnabled(true);
+    }
+    else
+    {
+        msgbox.setText("Graph is not loaded!");
+        msgbox.exec();
+    }
+}
+
+void MainWindow::on_pushButtonVisualize_clicked()
+{
+    graphPart.GraphColoring();
+    if(graphPart.isDrawable()){
+        if(item) delete item;
+        if (scene) delete scene;
+        if (view) delete view;
+        scene = new QGraphicsScene();
+        item = new QGraphicsSvgItem(QString::fromStdString(graphPart.getPathColored()));
+        scene->addItem(item);
+
+        view = new GraphVizPopUp();
+        view->setScene(scene);
+        view->setGeometry(QRect(this->width()+100,this->y(), 600, 600));
+        view->show();
+        // enables drag&drop
+        item->setFlag(QGraphicsItem::ItemIsMovable);
+    }
+    else
+    {
+        msgbox.setText("Graph is too big to visualize!");
+        msgbox.exec();
+    }
+}
+
+void MainWindow::on_BoxNumberOfPartitions_valueChanged(const QString)
+{
+    ui->pushButtonVisualize->setEnabled(false);
+}
+
+void MainWindow::on_pushButtonClearTable_clicked()
+{
+    if(tableCurrent != NULL) tableCurrent->clearContents();
+
+    for(int i = 0; i<metisOuts.size(); ++i)
+    {
+        delete metisOuts.at(i);
+    }
+
+    metisOuts.clear();
+
 }

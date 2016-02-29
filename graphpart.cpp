@@ -16,9 +16,6 @@ GraphPart::GraphPart()
     graphloaded = false;
     NoOfPartitions=2;
     srand(time(NULL));
-    //checkIfDrawable();
-    //GraphColoring();
-
 }
 
 bool GraphPart::isDrawable()
@@ -31,18 +28,32 @@ bool GraphPart::GraphIsLoaded()
     return graphloaded;
 }
 
+string GraphPart::removeWSpacesB(string str)
+{
+    size_t first = str.find_first_not_of(' ');
+    if (first == string::npos)
+        return "";
+    size_t last = str.find_last_not_of(' ');
+
+    return str.substr(first, (last-first+1));
+}
+
 void GraphPart::checkIfDrawable()
 {
     ifstream myfile(path_input);
     string temp;
+
     getline(myfile, temp);
+
+    // remove whitespaces from the beginning
+    temp = removeWSpacesB(temp);
+
     temp=temp.substr(0,temp.find(" "));
 
-    if(stoi(temp) > 100000)
+    if(stoi(temp) > 200000)
         drawable = false;
     else
         drawable = true;
-
 }
 
 void GraphPart::setInputFileName(string filename)
@@ -84,6 +95,9 @@ bool GraphPart::CheckInputFile()
     ifstream myfile(path_input);
     string temp;
     getline(myfile, temp);
+
+    // remove whitespaces from the beginning
+    temp = removeWSpacesB(temp);
 
     if((temp.find(" ")!=string::npos && inputType==graph) || (temp.find(" ")==string::npos && inputType==mesh)) return true;
     else return false;

@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <QDateTime>
 #include <QDir>
+#include <QDebug>
 
 #include "stdio.h"
 #include "iostream"
@@ -73,6 +74,7 @@ private:
     int NoOfPartitions;
 
 
+    string removeWSpacesB(string str);
 };
 
 #endif // GRAPHPART_H
