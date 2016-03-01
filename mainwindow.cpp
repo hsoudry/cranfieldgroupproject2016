@@ -188,10 +188,10 @@ void MainWindow::on_pushButtonPartition_clicked()
             if (ui->recursive_bisection->isChecked()) MetisOptions+="-ptype=rb ";
             if (ui->sorted->isChecked()) MetisOptions+="-ctype=shem ";
             if (ui->random_matching->isChecked()) MetisOptions+="-ctype=rm ";
-            if (ui->greedy->isChecked()) MetisOptions+="-iptype=grow ";
-            if (ui->random_bisection->isChecked()) MetisOptions+="-iptype=random ";
-            if (ui->edge_cut->isChecked()) MetisOptions+="-objtype=cut ";
-            if (ui->communication->isChecked()) MetisOptions+="-objtype=vol ";
+            if (ui->greedy->isChecked() && ui->greedy->isVisible()) MetisOptions+="-iptype=grow ";
+            if (ui->random_bisection->isChecked() && ui->random_bisection->isVisible()) MetisOptions+="-iptype=random ";
+            if (ui->edge_cut->isChecked() && ui->edge_cut->isVisible()) MetisOptions+="-objtype=cut ";
+            if (ui->communication->isChecked() && ui->communication->isVisible()) MetisOptions+="-objtype=vol ";
             graphPart.addMetisParameters(MetisOptions);
         }
         metisOuts.push_back(new MetisOutput(graphPart.Partition(),graphPart.extractName()));
@@ -341,10 +341,10 @@ void MainWindow::on_pushButtonPartitionOnly_clicked()
             if (ui->recursive_bisection->isChecked()) MetisOptions+="-ptype=rb ";
             if (ui->sorted->isChecked()) MetisOptions+="-ctype=shem ";
             if (ui->random_matching->isChecked()) MetisOptions+="-ctype=rm ";
-            if (ui->greedy->isChecked()) MetisOptions+="-iptype=grow ";
-            if (ui->random_bisection->isChecked()) MetisOptions+="-iptype=random ";
-            if (ui->edge_cut->isChecked()) MetisOptions+="-objtype=cut ";
-            if (ui->communication->isChecked()) MetisOptions+="-objtype=vol ";
+            if (ui->greedy->isChecked() && ui->greedy->isVisible()) MetisOptions+="-iptype=grow ";
+            if (ui->random_bisection->isChecked() && ui->random_bisection->isVisible()) MetisOptions+="-iptype=random ";
+            if (ui->edge_cut->isChecked() && ui->edge_cut->isVisible()) MetisOptions+="-objtype=cut ";
+            if (ui->communication->isChecked() && ui->communication->isVisible()) MetisOptions+="-objtype=vol ";
             graphPart.addMetisParameters(MetisOptions);
         }
         metisOuts.push_back(new MetisOutput(graphPart.Partition(),graphPart.extractName()));
