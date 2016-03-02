@@ -1,4 +1,7 @@
 # Cranfield group project 2016
+
+GraphPart is a graph and mesh partitioning software with an integrated graph visualisation tool. It uses Metis to partition the graphs and meshes.
+
 INSTALLATION GUIDE :
 ------------------------------------------------------
 1/ Extract the files from the archive.
