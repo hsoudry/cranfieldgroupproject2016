@@ -8,4 +8,6 @@ INSTALLATION GUIDE :
 
 2/ Execute the install.sh file. You will need an active internet connection. If prompted, enter your sudo password.
 
-3/ To run the software, run the cranfieldgroupproject file.
+3/ Enter the following line in the terminal : `chmod u+x cranfieldgroupproject` to make the file executable.
+
+4/ To run the software, run the cranfieldgroupproject file.
