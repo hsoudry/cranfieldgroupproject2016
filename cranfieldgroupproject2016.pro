@@ -33,3 +33,6 @@ FORMS    += mainwindow.ui
 
 OTHER_FILES += \
     graph_mod.py
+
+DISTFILES += \
+    colored5_3lp_icon.ico
